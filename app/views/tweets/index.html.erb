@@ -1,0 +1,18 @@
+<% provide(:title, 'Tweets') %>
+<h1>Tweets</h1>
+
+<div class="row">
+  <aside class="span12">
+
+    <!-- List tweets -->
+    <section>
+      <!-- Reverse so last tweet comes first -->
+      <% tweets = Tweet.find(:all).reverse %>
+
+      <% tweets.each do |tweet| %>
+  	    <%= tweet.created_at %>: <%= tweet.text %><br>
+      <% end %>
+
+    </section>
+  </aside>
+</div>

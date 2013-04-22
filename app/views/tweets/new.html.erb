@@ -1,0 +1,18 @@
+<% provide(:title, 'Create a tweet') %>
+<h1>Create a tweet</h1>
+
+<div class="row">
+  <div class="span4 offset4">
+  	<% @tweet = Tweet.new  %>
+    <%= form_for(@tweet) do |f| %>
+      <%= render 'shared/error_messages', object: @tweet %>
+      <%= f.label :text, "Text" %>
+      <%= f.text_field :text %>
+  </div>
+</div>
+<div class="row">
+  <div class="span4 offset4">
+      <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
