@@ -2,17 +2,30 @@
 <h1>Create a tweet</h1>
 
 <div class="row">
-  <div class="span4 offset4">
+  <div class="span4" style="float:none; margin-left: auto; margin-right: auto;">
   	<% @tweet = Tweet.new  %>
     <%= form_for(@tweet) do |f| %>
       <%= render 'shared/error_messages', object: @tweet %>
-      <%= f.label :text, "Text" %>
+      <%= f.label :text, "Start Tweeting!" %>
       <%= f.text_field :text %>
   </div>
 </div>
 <div class="row">
-  <div class="span4 offset4">
-      <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+  <div class="span4" style="float:none; margin-left: auto; margin-right: auto; ">
+     <%= f.submit "Tweet!", class: "btn btn-large btn-info" %>
     <% end %>
+<p><i class="icon-twitter"></i></p> 
+<p><i class="icon-shopping-cart"></i></p> 
+
   </div>
+  <hr> 
+  <div class="row"  > 
+    <div class="span8" style="float:none; margin-left: auto; margin-right: auto; overflow: auto; height: 400px; "> 
+       <% tweets = Tweet.find(:all).reverse %>
+
+      <% tweets.each do |tweet| %>
+        <%= tweet.created_at %>: <%= tweet.text %><br>
+      <% end %> 
+</div> 
+</div> 
 </div>
