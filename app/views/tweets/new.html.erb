@@ -1,18 +1,58 @@
 <% provide(:title, 'Create a tweet') %>
-<h1>Create a tweet</h1>
+<h1>Command center</h1>
 
 <div class="row">
-  <div class="span4 offset4">
-  	<% @tweet = Tweet.new  %>
-    <%= form_for(@tweet) do |f| %>
-      <%= render 'shared/error_messages', object: @tweet %>
-      <%= f.label :text, "Text" %>
-      <%= f.text_field :text %>
-  </div>
-</div>
-<div class="row">
-  <div class="span4 offset4">
-      <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
-    <% end %>
-  </div>
+  <aside class="span5">
+
+    <!-- Submit a tweet header -->
+    <section>
+      <h1>Submit a tweet</h1>
+    </section>
+
+    <!-- Submit a tweet form -->
+    <section>
+    	<% @tweet = Tweet.new  %>
+      <%= form_for(@tweet) do |f| %>
+        <%= render 'shared/error_messages', object: @tweet %>
+
+        <!-- Recaptcha -->
+        <%= recaptcha_tags %>
+
+        <%= f.text_field :text %>
+
+        <!-- Submit button -->
+        <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
+      <% end %>
+    </section> 
+  </aside>
+
+  <aside class="span4">   
+
+    <!-- Submitted tweets header -->
+    <section>
+      <h1>Submitted tweets</h1>
+    </section>
+
+    <!-- List submitted tweets -->
+    <section>        
+      <!-- Reverse so last tweet comes first -->
+      <% tweets = Tweet.find(:all).reverse %>
+      <% tweets.each do |tweet| %>
+        <%= tweet.text %><br>
+      <% end %>
+    </section>
+  </aside>
+
+  <aside class="span2">   
+    
+    <!-- Published tweets header -->
+    <section>
+      <h1>Published tweets</h1>
+    </section>
+
+    <!-- List published tweets -->
+    <section>        
+      Place final tweets here
+    </section>
+  </aside>
 </div>

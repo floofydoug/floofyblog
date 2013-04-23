@@ -6,16 +6,17 @@ class TweetsController < ApplicationController
   def create
     @tweet = Tweet.new(params[:tweet])
 
-    if @tweet.save
+    # Recaptcha implementation
+    if verify_recaptcha(:model => @tweet) && @tweet.save
 
       # Tweet from gem
       Twitter.update(@tweet.text)
 
-      flash[:success] = "Tweet created!"
-      redirect_to tweets_path
+      flash[:success] = "Tweet submitted!"
+      redirect_to root_url
     else
-      flash.now[:error] = "You must complete the field."
-      render 'new'
+      flash[:error] = "You must complete every field."
+      redirect_to root_url
     end
   end
 

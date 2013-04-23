@@ -6,3 +6,6 @@ en:
     attributes:
       user:
         password_digest: "Password"
+  recaptcha:
+    errors:
+      incorrect-captcha-sol: 'Incorrect verification code.'

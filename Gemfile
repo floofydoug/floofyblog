@@ -8,11 +8,14 @@ gem 'will_paginate', '3.0.3'
 gem 'bootstrap-will_paginate', '0.0.6'
 gem 'jquery-rails', '2.0.2'
 
-# Added 4-17-13
-gem 'twitter'
+# Added 4-23-13
+gem "recaptcha", :require => "recaptcha/rails"
 
 # Added 4-21-13
 gem "rake", "~> 10.0.4"
+
+# Added 4-17-13
+gem "twitter", "~> 4.6.2"
 
 group :development, :test do
   gem 'sqlite3', '1.3.5'
