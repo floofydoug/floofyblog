@@ -8,8 +8,7 @@ require "active_resource/railtie"
 require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 
-#adding font awesome - doug 4/12/2013
-config.assets.paths << Rails.root.join("app", "assets", "fonts") 
+
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
