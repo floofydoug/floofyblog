@@ -4,7 +4,6 @@ class CreateIPAddresses < ActiveRecord::Migration
 
       t.string :ip, :limit => 45
       t.boolean :tweeted, default: false
-      t.boolean :voted, default: false
       t.datetime :created_at
     end
   end
