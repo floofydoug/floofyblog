@@ -11,6 +11,8 @@ gem 'jquery-rails', '2.0.2'
 # Added 4-17-13
 gem 'twitter'
 
+#Added 4-23-13
+gem 'clockwork', '0.5' 
 # Added 4-21-13
 gem "rake", "~> 10.0.4"
 

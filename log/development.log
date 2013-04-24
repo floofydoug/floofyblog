@@ -24050,3 +24050,141 @@ Served asset /application.js - 304 Not Modified (2ms)
 
 Started GET "/assets/fontawesome-webfont.woff" for 127.0.0.1 at 2013-04-23 02:04:37 -0400
 Served asset /fontawesome-webfont.woff - 304 Not Modified (0ms)
+Connecting to database specified by database.yml
+
+
+Started GET "/" for 127.0.0.1 at 2013-04-23 18:30:26 -0400
+Connecting to database specified by database.yml
+Processing by TweetsController#new as HTML
+  Rendered shared/_error_messages.html.erb (0.8ms)
+  [1m[36mTweet Load (0.3ms)[0m  [1mSELECT "tweets".* FROM "tweets" [0m
+  Rendered tweets/new.html.erb within layouts/application (57.0ms)
+  Rendered layouts/_shim.html.erb (0.5ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."remember_token" = 'OfAAqnqWAT3enZR_XeWvOQ' LIMIT 1
+  Rendered layouts/_header.html.erb (77.5ms)
+  Rendered layouts/_footer.html.erb (1.1ms)
+Completed 200 OK in 298ms (Views: 286.8ms | ActiveRecord: 4.7ms)
+
+
+Started GET "/assets/font-awesome.css?body=1" for 127.0.0.1 at 2013-04-23 18:30:27 -0400
+Served asset /font-awesome.css - 304 Not Modified (14ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-04-23 18:30:27 -0400
+Served asset /application.css - 304 Not Modified (21ms)
+
+
+Started GET "/assets/font-awesome.min.css?body=1" for 127.0.0.1 at 2013-04-23 18:30:27 -0400
+Served asset /font-awesome.min.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/font-awesome-ie7.min.css?body=1" for 127.0.0.1 at 2013-04-23 18:30:27 -0400
+Served asset /font-awesome-ie7.min.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2013-04-23 18:30:27 -0400
+Served asset /custom.css - 304 Not Modified (10ms)
+
+
+Started GET "/assets/sessions.css?body=1" for 127.0.0.1 at 2013-04-23 18:30:27 -0400
+Served asset /sessions.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/static_pages.css?body=1" for 127.0.0.1 at 2013-04-23 18:30:27 -0400
+Served asset /static_pages.css - 304 Not Modified (5ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2013-04-23 18:30:27 -0400
+Served asset /users.css - 304 Not Modified (4ms)
+
+
+Started GET "/assets/tweets.css?body=1" for 127.0.0.1 at 2013-04-23 18:30:27 -0400
+Served asset /tweets.css - 304 Not Modified (6ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-04-23 18:30:27 -0400
+Served asset /jquery.js - 304 Not Modified (9ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-04-23 18:30:27 -0400
+Served asset /bootstrap-transition.js - 304 Not Modified (4ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-04-23 18:30:27 -0400
+Served asset /bootstrap-affix.js - 304 Not Modified (5ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-04-23 18:30:27 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (46ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-04-23 18:30:27 -0400
+Served asset /bootstrap-alert.js - 304 Not Modified (7ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-04-23 18:30:27 -0400
+Served asset /bootstrap-button.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-04-23 18:30:27 -0400
+Served asset /bootstrap-carousel.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-04-23 18:30:27 -0400
+Served asset /bootstrap-collapse.js - 304 Not Modified (5ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-04-23 18:30:27 -0400
+Served asset /bootstrap-dropdown.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-04-23 18:30:27 -0400
+Served asset /bootstrap-modal.js - 304 Not Modified (5ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-04-23 18:30:27 -0400
+Served asset /bootstrap-tab.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-04-23 18:30:27 -0400
+Served asset /bootstrap-scrollspy.js - 304 Not Modified (5ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-04-23 18:30:27 -0400
+Served asset /bootstrap-tooltip.js - 304 Not Modified (5ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-04-23 18:30:27 -0400
+Served asset /bootstrap-popover.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-04-23 18:30:27 -0400
+Served asset /bootstrap-typeahead.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/sessions.js?body=1" for 127.0.0.1 at 2013-04-23 18:30:27 -0400
+Served asset /sessions.js - 304 Not Modified (4ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-04-23 18:30:27 -0400
+Served asset /bootstrap.js - 304 Not Modified (21ms)
+
+
+Started GET "/assets/static_pages.js?body=1" for 127.0.0.1 at 2013-04-23 18:30:28 -0400
+Served asset /static_pages.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/tweets.js?body=1" for 127.0.0.1 at 2013-04-23 18:30:28 -0400
+Served asset /tweets.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-04-23 18:30:28 -0400
+Served asset /application.js - 304 Not Modified (30ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2013-04-23 18:30:28 -0400
+Served asset /users.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/fontawesome-webfont.woff" for 127.0.0.1 at 2013-04-23 18:30:28 -0400
+Served asset /fontawesome-webfont.woff - 304 Not Modified (3ms)
