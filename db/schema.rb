@@ -11,7 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130421233140) do
+ActiveRecord::Schema.define(:version => 20130424004633) do
+
+  create_table "final_tweets", :force => true do |t|
+    t.string   "text",       :limit => 140
+    t.datetime "created_at"
+    t.integer  "score"
+  end
+
+  create_table "ip_addresses", :force => true do |t|
+    t.string   "ip",         :limit => 45
+    t.boolean  "tweeted",                  :default => false
+    t.datetime "created_at"
+    t.boolean  "upvoted",                  :default => false
+    t.boolean  "downvoted",                :default => false
+  end
 
   create_table "microposts", :force => true do |t|
     t.string   "content"
@@ -36,6 +50,7 @@ ActiveRecord::Schema.define(:version => 20130421233140) do
   create_table "tweets", :force => true do |t|
     t.string   "text",       :limit => 140
     t.datetime "created_at"
+    t.integer  "score"
   end
 
   create_table "users", :force => true do |t|
