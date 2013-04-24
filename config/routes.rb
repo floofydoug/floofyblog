@@ -8,10 +8,9 @@ SampleApp::Application.routes.draw do
   resources :microposts, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
 
-<<<<<<< HEAD
-=======
+
   # root to: 'static_pages#home'
->>>>>>> styling-break
+
   root to: 'tweets#new'
 
   match '/signup',  to: 'users#new'

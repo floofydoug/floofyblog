@@ -64,7 +64,7 @@ class TweetsController < ApplicationController
     @ip_address = IPAddress.find_by_ip(current_ip)
     
     # If IP exists and already upvoted, do nothing
-    if @ip_address && @ip_address.upvoted
+    if @ip_address && @ip_address.upvoted && @tweet
       flash[:error] = "You already upvoted. Please wait until the next session to upvote again."
       redirect_to root_url
 

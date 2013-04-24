@@ -1,8 +1,8 @@
 <% provide(:title, 'Voting center') %>
-<h1>Voting center</h1>
+<h1>The Internet Feels: </h1>
 
 <div class="row">
-<<<<<<< HEAD
+<!-- <<<<<<< HEAD
   <div class="span4" style="float:none; margin-left: auto; margin-right: auto;">
   	<% @tweet = Tweet.new  %>
     <%= form_for(@tweet) do |f| %>
@@ -31,29 +31,11 @@
       <% end %> 
 </div> 
 </div> 
-=======
-  <aside class="span5">
+======= -->
+  <aside class="span6">
 
     <!-- Submit a tweet header -->
-    <section>
-      <h1>Submit a tweet</h1>
-    </section>
-
-    <!-- Submit a tweet form -->
-    <section>
-    	<% @tweet = Tweet.new  %>
-      <%= form_for(@tweet) do |f| %>
-        <%= render 'shared/error_messages', object: @tweet %>
-
-        <%= f.text_field :text %>
-
-        <!-- Recaptcha -->
-        <%= recaptcha_tags %><br>
-
-        <!-- Submit button -->
-        <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
-      <% end %>
-    </section> 
+    
 
     <!-- Published tweets header -->
     <section>
@@ -70,9 +52,35 @@
       <% end %>
     </section>
 
+
+   <section>
+      <h1>Submit a tweet</h1>
+    </section>
+
+    <!-- Submit a tweet form -->
+    <section>
+      <% @tweet = Tweet.new  %>
+      <%= form_for(@tweet) do |f| %>
+        <%= render 'shared/error_messages', object: @tweet %>
+        <div class="input-append"> 
+        <%= f.text_field :text, :style => "width: 350px;"%>
+          <%= button_tag(type: 'submit', class: "btn btn-info") do %>
+ <i class="icon-twitter icon-white"></i> Tweet!
+  <% end %>
+<% end %> 
+      </div> 
+
+        <!-- Recaptcha -->
+        <%= recaptcha_tags %><br>
+
+        <!-- Submit button -->
+       
+   
+    </section>  
+
   </aside>
 
-  <aside class="span7">   
+  <aside class="span6">   
 
     <!-- Submitted tweets header -->
     <section>
@@ -83,14 +91,18 @@
     <section>       
 
       <!-- List tweets in descending order of score -->
-      <% tweets = Tweet.find(:all, :order => "score desc") %>
+<!--       <% tweets = Tweet.find(:all, :order => "score desc") %> -->
+      <% tweets = Tweet.paginate(:page => params[:page], :per_page=>10).order('score DESC') %> 
       <% tweets.each do |tweet| %>
 
         <!-- Links to upvote and downvote -->
-        [ <%= tweet.score %> ] [ <%= link_to "Upvote", upvote_tweet_path(tweet) %> ] [ <%= link_to "Downvote", downvote_tweet_path(tweet) %> ] <%= tweet.text %><br>
+        <div style="padding-top:1px;"> <strong padding="5px;">[<%= tweet.score %>] </strong> <%= link_to raw("<i class=\"icon-thumbs-up icon-white\"></i>"), 
+          upvote_tweet_path(tweet), 
+          class: "btn btn-success"%>  <%= link_to raw("<i class=\"icon-thumbs-down icon-white\"></i>"), 
+          downvote_tweet_path(tweet), 
+          class: "btn btn-danger"%>  <%= tweet.text %> </div> <br>
       <% end %>
+       <%= will_paginate tweets %>
     </section>
   </aside>
-
->>>>>>> styling-break
 </div>
