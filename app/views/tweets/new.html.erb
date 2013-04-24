@@ -32,7 +32,12 @@
 
     <!-- List published tweets -->
     <section>        
-      Place final tweets here
+      <% final_tweets = FinalTweet.find(:all).reverse %>
+      <% if final_tweets %>
+        <% final_tweets.each do |final_tweet| %>
+          <%= final_tweet.text %><br>
+        <% end %>
+      <% end %>
     </section>
 
   </aside>
