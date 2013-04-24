@@ -19,6 +19,14 @@ SampleApp::Application.routes.draw do
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
 
+  # Added 4-23-2013
+  resources :tweets do
+    member do
+      get :upvote
+      get :downvote
+    end
+  end
+
   # Added 4-21-2013
   resources :tweets do
     collection do

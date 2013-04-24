@@ -45,11 +45,14 @@
     </section>
 
     <!-- List submitted tweets -->
-    <section>        
-      <!-- Reverse so last tweet comes first -->
-      <% tweets = Tweet.find(:all).reverse %>
+    <section>       
+
+      <!-- List tweets in descending order of score -->
+      <% tweets = Tweet.find(:all, :order => "score desc") %>
       <% tweets.each do |tweet| %>
-        <%= tweet.text %><br>
+
+        <!-- Links to upvote and downvote -->
+        [ <%= tweet.score %> ] [ <%= link_to "Upvote", upvote_tweet_path(tweet) %> ] [ <%= link_to "Downvote", downvote_tweet_path(tweet) %> ] <%= tweet.text %><br>
       <% end %>
     </section>
   </aside>
