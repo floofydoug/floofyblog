@@ -1,0 +1,2 @@
+class FinalTweetsController < ApplicationController
+end

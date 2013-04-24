@@ -1,5 +1,5 @@
-<% provide(:title, 'Create a tweet') %>
-<h1>Command center</h1>
+<% provide(:title, 'Voting center') %>
+<h1>Voting center</h1>
 
 <div class="row">
   <aside class="span5">
@@ -15,18 +15,29 @@
       <%= form_for(@tweet) do |f| %>
         <%= render 'shared/error_messages', object: @tweet %>
 
-        <!-- Recaptcha -->
-        <%= recaptcha_tags %>
-
         <%= f.text_field :text %>
+
+        <!-- Recaptcha -->
+        <%= recaptcha_tags %><br>
 
         <!-- Submit button -->
         <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
       <% end %>
     </section> 
+
+    <!-- Published tweets header -->
+    <section>
+      <h1>Published tweets</h1>
+    </section>
+
+    <!-- List published tweets -->
+    <section>        
+      Place final tweets here
+    </section>
+
   </aside>
 
-  <aside class="span4">   
+  <aside class="span7">   
 
     <!-- Submitted tweets header -->
     <section>
@@ -43,16 +54,4 @@
     </section>
   </aside>
 
-  <aside class="span2">   
-    
-    <!-- Published tweets header -->
-    <section>
-      <h1>Published tweets</h1>
-    </section>
-
-    <!-- List published tweets -->
-    <section>        
-      Place final tweets here
-    </section>
-  </aside>
 </div>
