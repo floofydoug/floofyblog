@@ -1,4 +1,4 @@
-class AddUpvotedAndDownvotedToIpAddress < ActiveRecord::Migration
+class AddUpvotedAndDownvotedToIPAddress < ActiveRecord::Migration
   def change
   	remove_column :ip_addresses, :voted
 
