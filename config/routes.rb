@@ -16,6 +16,10 @@ SampleApp::Application.routes.draw do
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
+
+  match 'auth/twitter/callback', to: 'sessions#create'
+  match 'auth/failure', to: redirect('/')
+  match 'signout', to: 'sessions#destroy', as: 'signout'
       
   match '/help',    to: 'static_pages#help'
   match '/about',   to: 'static_pages#about'
