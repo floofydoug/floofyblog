@@ -73327,3 +73327,1506 @@ Served asset /users.js - 304 Not Modified (0ms)
 
 Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-04-26 04:45:47 -0400
 Served asset /application.js - 304 Not Modified (0ms)
+Connecting to database specified by database.yml
+  [1m[36m (5.2ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (1.1ms)[0m  CREATE TABLE "final_tweets" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "text" varchar(140), "created_at" datetime, "score" integer) 
+  [1m[36m (1.3ms)[0m  [1mCREATE TABLE "ip_addresses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "ip" varchar(45), "tweeted" boolean DEFAULT 'f', "created_at" datetime, "upvoted" boolean DEFAULT 'f', "downvoted" boolean DEFAULT 'f') [0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "microposts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "content" varchar(255), "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.0ms)[0m  [1mCREATE INDEX "index_microposts_on_user_id_and_created_at" ON "microposts" ("user_id", "created_at")[0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "people" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "provider" varchar(255), "uid" varchar(255), "name" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.0ms)[0m  [1mCREATE TABLE "relationships" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "follower_id" integer, "followed_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (1.0ms)[0m  CREATE INDEX "index_relationships_on_followed_id" ON "relationships" ("followed_id")
+  [1m[36m (1.0ms)[0m  [1mCREATE UNIQUE INDEX "index_relationships_on_follower_id_and_followed_id" ON "relationships" ("follower_id", "followed_id")[0m
+  [1m[35m (1.6ms)[0m  CREATE INDEX "index_relationships_on_follower_id" ON "relationships" ("follower_id")
+  [1m[36m (17.0ms)[0m  [1mCREATE TABLE "tweets" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "text" varchar(140), "created_at" datetime, "score" integer) [0m
+  [1m[35m (2.0ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "provider" varchar(255), "uid" integer, "name" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (5.5ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (1.0ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.2ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (1.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130426080932')
+  [1m[36m (1.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20120308034224')[0m
+  [1m[35m (1.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20120308034454')
+  [1m[36m (1.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20120308054414')[0m
+  [1m[35m (2.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20120308193644')
+  [1m[36m (1.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20120308210452')[0m
+  [1m[35m (1.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20120308215846')
+  [1m[36m (0.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130421233140')[0m
+  [1m[35m (2.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130423215156')
+  [1m[36m (1.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130423222141')[0m
+  [1m[35m (1.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130423224329')
+  [1m[36m (1.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130423225547')[0m
+  [1m[35m (0.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130424004633')
+  [1m[36m (1.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130425200613')[0m
+  [1m[35m (2.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130425204050')
+  [1m[36m (1.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130425224823')[0m
+  [1m[35m (6.5ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+
+
+Started GET "/" for 127.0.0.1 at 2013-04-26 04:49:20 -0400
+Processing by TweetsController#new as HTML
+  Rendered shared/_error_messages.html.erb (0.7ms)
+  [1m[36mTweet Load (0.2ms)[0m  [1mSELECT "tweets".* FROM "tweets" [0m
+  [1m[35mFinalTweet Load (0.1ms)[0m  SELECT "final_tweets".* FROM "final_tweets" 
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  [1m[36mTweet Load (0.1ms)[0m  [1mSELECT "tweets".* FROM "tweets" ORDER BY score desc[0m
+  [1m[35mTweet Load (0.2ms)[0m  SELECT "tweets".* FROM "tweets" ORDER BY score DESC LIMIT 10 OFFSET 0
+  Rendered tweets/new.html.erb within layouts/application (62.4ms)
+  Rendered layouts/_shim.html.erb (0.5ms)
+  [1m[36mUser Load (5.9ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_header.html.erb (23.7ms)
+Completed 500 Internal Server Error in 259ms
+
+ActiveRecord::RecordNotFound (Couldn't find User with id=1):
+  app/controllers/application_controller.rb:14:in `current_user'
+  app/views/layouts/_header.html.erb:7:in `_app_views_layouts__header_html_erb___1405173588901915993_70111778193620'
+  app/views/layouts/application.html.erb:11:in `_app_views_layouts_application_html_erb__307667806359563464_70111753651400'
+
+
+  Rendered /Users/Dphung/.rvm/gems/ruby-1.9.3-p327/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.8ms)
+  Rendered /Users/Dphung/.rvm/gems/ruby-1.9.3-p327/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.3ms)
+  Rendered /Users/Dphung/.rvm/gems/ruby-1.9.3-p327/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (11.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-04-26 04:49:24 -0400
+Processing by TweetsController#new as HTML
+  Rendered shared/_error_messages.html.erb (0.1ms)
+  [1m[35mTweet Load (0.1ms)[0m  SELECT "tweets".* FROM "tweets" 
+  [1m[36mFinalTweet Load (0.1ms)[0m  [1mSELECT "final_tweets".* FROM "final_tweets" [0m
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  [1m[35mTweet Load (0.2ms)[0m  SELECT "tweets".* FROM "tweets" ORDER BY score desc
+  [1m[36mTweet Load (0.2ms)[0m  [1mSELECT "tweets".* FROM "tweets" ORDER BY score DESC LIMIT 10 OFFSET 0[0m
+  Rendered tweets/new.html.erb within layouts/application (8.1ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered layouts/_header.html.erb (2.1ms)
+Completed 500 Internal Server Error in 74ms
+
+ActiveRecord::RecordNotFound (Couldn't find User with id=1):
+  app/controllers/application_controller.rb:14:in `current_user'
+  app/views/layouts/_header.html.erb:7:in `_app_views_layouts__header_html_erb___1405173588901915993_70111778193620'
+  app/views/layouts/application.html.erb:11:in `_app_views_layouts_application_html_erb__307667806359563464_70111753651400'
+
+
+  Rendered /Users/Dphung/.rvm/gems/ruby-1.9.3-p327/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.7ms)
+  Rendered /Users/Dphung/.rvm/gems/ruby-1.9.3-p327/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.2ms)
+  Rendered /Users/Dphung/.rvm/gems/ruby-1.9.3-p327/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (10.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-04-26 04:49:37 -0400
+Processing by TweetsController#new as HTML
+  Rendered shared/_error_messages.html.erb (0.1ms)
+  [1m[36mTweet Load (0.1ms)[0m  [1mSELECT "tweets".* FROM "tweets" [0m
+  [1m[35mFinalTweet Load (0.1ms)[0m  SELECT "final_tweets".* FROM "final_tweets" 
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  [1m[36mTweet Load (0.1ms)[0m  [1mSELECT "tweets".* FROM "tweets" ORDER BY score desc[0m
+  [1m[35mTweet Load (0.1ms)[0m  SELECT "tweets".* FROM "tweets" ORDER BY score DESC LIMIT 10 OFFSET 0
+  Rendered tweets/new.html.erb within layouts/application (7.4ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_header.html.erb (2.1ms)
+Completed 500 Internal Server Error in 30ms
+
+ActiveRecord::RecordNotFound (Couldn't find User with id=1):
+  app/controllers/application_controller.rb:14:in `current_user'
+  app/views/layouts/_header.html.erb:7:in `_app_views_layouts__header_html_erb___1405173588901915993_70111778193620'
+  app/views/layouts/application.html.erb:11:in `_app_views_layouts_application_html_erb__307667806359563464_70111753651400'
+
+
+  Rendered /Users/Dphung/.rvm/gems/ruby-1.9.3-p327/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.8ms)
+  Rendered /Users/Dphung/.rvm/gems/ruby-1.9.3-p327/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.2ms)
+  Rendered /Users/Dphung/.rvm/gems/ruby-1.9.3-p327/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (10.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-04-26 04:49:39 -0400
+Processing by TweetsController#new as HTML
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  [1m[35mTweet Load (0.2ms)[0m  SELECT "tweets".* FROM "tweets" 
+  [1m[36mFinalTweet Load (0.1ms)[0m  [1mSELECT "final_tweets".* FROM "final_tweets" [0m
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  [1m[35mTweet Load (0.1ms)[0m  SELECT "tweets".* FROM "tweets" ORDER BY score desc
+  [1m[36mTweet Load (0.2ms)[0m  [1mSELECT "tweets".* FROM "tweets" ORDER BY score DESC LIMIT 10 OFFSET 0[0m
+  Rendered tweets/new.html.erb within layouts/application (7.5ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered layouts/_header.html.erb (2.0ms)
+Completed 500 Internal Server Error in 31ms
+
+ActiveRecord::RecordNotFound (Couldn't find User with id=1):
+  app/controllers/application_controller.rb:14:in `current_user'
+  app/views/layouts/_header.html.erb:7:in `_app_views_layouts__header_html_erb___1405173588901915993_70111778193620'
+  app/views/layouts/application.html.erb:11:in `_app_views_layouts_application_html_erb__307667806359563464_70111753651400'
+
+
+  Rendered /Users/Dphung/.rvm/gems/ruby-1.9.3-p327/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.9ms)
+  Rendered /Users/Dphung/.rvm/gems/ruby-1.9.3-p327/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.3ms)
+  Rendered /Users/Dphung/.rvm/gems/ruby-1.9.3-p327/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (11.1ms)
+Connecting to database specified by database.yml
+  [1m[36m (2.4ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to AddIndexToUsersEmail (20120308034224)
+Migrating to AddPasswordDigestToUsers (20120308034454)
+Migrating to AddRememberTokenToUsers (20120308054414)
+Migrating to AddAdminToUsers (20120308193644)
+Migrating to CreateMicroposts (20120308210452)
+Migrating to CreateRelationships (20120308215846)
+Migrating to CreateTweets (20130421233140)
+Migrating to CreateFinalTweets (20130423215156)
+Migrating to AddScoreToTweets (20130423222141)
+Migrating to CreateIpAddresses (20130423224329)
+Migrating to AddScoreToFinalTweets (20130423225547)
+Migrating to AddUpvotedAndDownvotedToIpAddresses (20130424004633)
+Migrating to CreatePeople (20130425200613)
+Migrating to DropUser (20130425204050)
+Migrating to User (20130425224823)
+Migrating to CreateUsers (20130426080932)
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+
+
+Started GET "/" for 127.0.0.1 at 2013-04-26 04:51:25 -0400
+Processing by TweetsController#new as HTML
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  [1m[36mTweet Load (0.1ms)[0m  [1mSELECT "tweets".* FROM "tweets" [0m
+  [1m[35mFinalTweet Load (0.1ms)[0m  SELECT "final_tweets".* FROM "final_tweets" 
+  Rendered shared/_error_messages.html.erb (0.1ms)
+  [1m[36mTweet Load (0.1ms)[0m  [1mSELECT "tweets".* FROM "tweets" ORDER BY score desc[0m
+  [1m[35mTweet Load (0.2ms)[0m  SELECT "tweets".* FROM "tweets" ORDER BY score DESC LIMIT 10 OFFSET 0
+  Rendered tweets/new.html.erb within layouts/application (12.5ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_header.html.erb (5.8ms)
+Completed 500 Internal Server Error in 47ms
+
+ActiveRecord::RecordNotFound (Couldn't find User with id=1):
+  app/controllers/application_controller.rb:14:in `current_user'
+  app/views/layouts/_header.html.erb:7:in `_app_views_layouts__header_html_erb___1405173588901915993_70111778193620'
+  app/views/layouts/application.html.erb:11:in `_app_views_layouts_application_html_erb__307667806359563464_70111753651400'
+
+
+  Rendered /Users/Dphung/.rvm/gems/ruby-1.9.3-p327/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.8ms)
+  Rendered /Users/Dphung/.rvm/gems/ruby-1.9.3-p327/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.2ms)
+  Rendered /Users/Dphung/.rvm/gems/ruby-1.9.3-p327/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (11.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-04-26 04:51:57 -0400
+Processing by TweetsController#new as HTML
+  Rendered shared/_error_messages.html.erb (0.1ms)
+  [1m[35mTweet Load (0.1ms)[0m  SELECT "tweets".* FROM "tweets" 
+  [1m[36mFinalTweet Load (0.1ms)[0m  [1mSELECT "final_tweets".* FROM "final_tweets" [0m
+  Rendered shared/_error_messages.html.erb (0.1ms)
+  [1m[35mTweet Load (0.2ms)[0m  SELECT "tweets".* FROM "tweets" ORDER BY score desc
+  [1m[36mTweet Load (0.2ms)[0m  [1mSELECT "tweets".* FROM "tweets" ORDER BY score DESC LIMIT 10 OFFSET 0[0m
+  Rendered tweets/new.html.erb within layouts/application (10.4ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered layouts/_header.html.erb (2.4ms)
+Completed 500 Internal Server Error in 44ms
+
+ActiveRecord::RecordNotFound (Couldn't find User with id=1):
+  app/controllers/application_controller.rb:14:in `current_user'
+  app/views/layouts/_header.html.erb:7:in `_app_views_layouts__header_html_erb___1405173588901915993_70111778193620'
+  app/views/layouts/application.html.erb:11:in `_app_views_layouts_application_html_erb__307667806359563464_70111753651400'
+
+
+  Rendered /Users/Dphung/.rvm/gems/ruby-1.9.3-p327/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.0ms)
+  Rendered /Users/Dphung/.rvm/gems/ruby-1.9.3-p327/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.4ms)
+  Rendered /Users/Dphung/.rvm/gems/ruby-1.9.3-p327/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (11.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-04-26 04:56:19 -0400
+Processing by TweetsController#new as HTML
+  Rendered shared/_error_messages.html.erb (0.1ms)
+  [1m[36mTweet Load (0.2ms)[0m  [1mSELECT "tweets".* FROM "tweets" [0m
+  [1m[35mFinalTweet Load (0.1ms)[0m  SELECT "final_tweets".* FROM "final_tweets" 
+  Rendered shared/_error_messages.html.erb (0.1ms)
+  [1m[36mTweet Load (0.1ms)[0m  [1mSELECT "tweets".* FROM "tweets" ORDER BY score desc[0m
+  [1m[35mTweet Load (0.2ms)[0m  SELECT "tweets".* FROM "tweets" ORDER BY score DESC LIMIT 10 OFFSET 0
+  Rendered tweets/new.html.erb within layouts/application (12.7ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_header.html.erb (5.0ms)
+  Rendered layouts/_footer.html.erb (1.1ms)
+Completed 200 OK in 47ms (Views: 38.4ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2013-04-26 04:56:19 -0400
+Served asset /custom.css - 200 OK (6ms)
+
+
+Started GET "/assets/font-awesome.css?body=1" for 127.0.0.1 at 2013-04-26 04:56:19 -0400
+Served asset /font-awesome.css - 200 OK (3ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-04-26 04:56:19 -0400
+Served asset /application.css - 200 OK (32ms)
+
+
+Started GET "/assets/final_tweets.css?body=1" for 127.0.0.1 at 2013-04-26 04:56:19 -0400
+Served asset /final_tweets.css - 200 OK (2ms)
+
+
+Started GET "/assets/font-awesome-ie7.min.css?body=1" for 127.0.0.1 at 2013-04-26 04:56:19 -0400
+Served asset /font-awesome-ie7.min.css - 200 OK (2ms)
+
+
+Started GET "/assets/font-awesome.min.css?body=1" for 127.0.0.1 at 2013-04-26 04:56:19 -0400
+Served asset /font-awesome.min.css - 200 OK (2ms)
+
+
+Started GET "/assets/ip_addresses.css?body=1" for 127.0.0.1 at 2013-04-26 04:56:19 -0400
+Served asset /ip_addresses.css - 200 OK (2ms)
+
+
+Started GET "/assets/sessions.css?body=1" for 127.0.0.1 at 2013-04-26 04:56:19 -0400
+Served asset /sessions.css - 200 OK (4ms)
+
+
+Started GET "/assets/static_pages.css?body=1" for 127.0.0.1 at 2013-04-26 04:56:19 -0400
+Served asset /static_pages.css - 200 OK (48ms)
+
+
+Started GET "/assets/tweets.css?body=1" for 127.0.0.1 at 2013-04-26 04:56:19 -0400
+Served asset /tweets.css - 200 OK (3ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2013-04-26 04:56:19 -0400
+Served asset /users.css - 200 OK (2ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-04-26 04:56:19 -0400
+Served asset /jquery.js - 200 OK (7ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-04-26 04:56:19 -0400
+Served asset /jquery_ujs.js - 200 OK (3ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-04-26 04:56:19 -0400
+Served asset /bootstrap-transition.js - 200 OK (3ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-04-26 04:56:19 -0400
+Served asset /bootstrap-affix.js - 200 OK (5ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-04-26 04:56:19 -0400
+Served asset /bootstrap-alert.js - 200 OK (6ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-04-26 04:56:19 -0400
+Served asset /bootstrap-button.js - 200 OK (3ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-04-26 04:56:19 -0400
+Served asset /bootstrap-carousel.js - 200 OK (3ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-04-26 04:56:19 -0400
+Served asset /bootstrap-dropdown.js - 200 OK (3ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-04-26 04:56:19 -0400
+Served asset /bootstrap-collapse.js - 200 OK (4ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-04-26 04:56:19 -0400
+Served asset /bootstrap-scrollspy.js - 200 OK (4ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-04-26 04:56:19 -0400
+Served asset /bootstrap-modal.js - 200 OK (3ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-04-26 04:56:19 -0400
+Served asset /bootstrap-tab.js - 200 OK (3ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-04-26 04:56:19 -0400
+Served asset /bootstrap-tooltip.js - 200 OK (3ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-04-26 04:56:19 -0400
+Served asset /bootstrap-popover.js - 200 OK (6ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-04-26 04:56:19 -0400
+Served asset /bootstrap-typeahead.js - 200 OK (3ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-04-26 04:56:19 -0400
+Served asset /bootstrap.js - 200 OK (17ms)
+
+
+Started GET "/assets/final_tweets.js?body=1" for 127.0.0.1 at 2013-04-26 04:56:19 -0400
+Served asset /final_tweets.js - 200 OK (3ms)
+
+
+Started GET "/assets/ip_addresses.js?body=1" for 127.0.0.1 at 2013-04-26 04:56:19 -0400
+Served asset /ip_addresses.js - 200 OK (2ms)
+
+
+Started GET "/assets/sessions.js?body=1" for 127.0.0.1 at 2013-04-26 04:56:19 -0400
+Served asset /sessions.js - 200 OK (2ms)
+
+
+Started GET "/assets/static_pages.js?body=1" for 127.0.0.1 at 2013-04-26 04:56:19 -0400
+Served asset /static_pages.js - 200 OK (2ms)
+
+
+Started GET "/assets/tweets.js?body=1" for 127.0.0.1 at 2013-04-26 04:56:19 -0400
+Served asset /tweets.js - 200 OK (2ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2013-04-26 04:56:19 -0400
+Served asset /users.js - 200 OK (3ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-04-26 04:56:19 -0400
+Served asset /application.js - 200 OK (30ms)
+
+
+Started GET "/assets/fontawesome-webfont.woff" for 127.0.0.1 at 2013-04-26 04:56:19 -0400
+Served asset /fontawesome-webfont.woff - 200 OK (3ms)
+
+
+Started GET "/auth/twitter" for 127.0.0.1 at 2013-04-26 04:57:51 -0400
+(twitter) Request phase initiated.
+
+
+Started GET "/auth/twitter/callback?oauth_token=xGZAbKFUWPiUYDu7BJx7hXXshjP0WnivSSppHKmCEyo&oauth_verifier=1JfmiJyqWmbSPsWvE31aeB1RhqmiLB9QKBRhA5hN14" for 127.0.0.1 at 2013-04-26 04:57:55 -0400
+(twitter) Callback phase initiated.
+Processing by SessionsController#create as HTML
+  Parameters: {"oauth_token"=>"xGZAbKFUWPiUYDu7BJx7hXXshjP0WnivSSppHKmCEyo", "oauth_verifier"=>"1JfmiJyqWmbSPsWvE31aeB1RhqmiLB9QKBRhA5hN14"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."provider" = 'twitter' AND "users"."uid" = 216810199 LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (5.2ms)[0m  INSERT INTO "users" ("created_at", "name", "provider", "uid", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Fri, 26 Apr 2013 08:57:56 UTC +00:00], ["name", "FloofyDoug"], ["provider", "twitter"], ["uid", 216810199], ["updated_at", Fri, 26 Apr 2013 08:57:56 UTC +00:00]]
+  [1m[36m (2.1ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 28ms (ActiveRecord: 8.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-04-26 04:57:56 -0400
+Processing by TweetsController#new as HTML
+  Rendered shared/_error_messages.html.erb (0.1ms)
+  [1m[35mTweet Load (0.2ms)[0m  SELECT "tweets".* FROM "tweets" 
+  [1m[36mFinalTweet Load (0.2ms)[0m  [1mSELECT "final_tweets".* FROM "final_tweets" [0m
+  Rendered shared/_error_messages.html.erb (0.1ms)
+  [1m[35mTweet Load (0.2ms)[0m  SELECT "tweets".* FROM "tweets" ORDER BY score desc
+  [1m[36mTweet Load (0.3ms)[0m  [1mSELECT "tweets".* FROM "tweets" ORDER BY score DESC LIMIT 10 OFFSET 0[0m
+  Rendered tweets/new.html.erb within layouts/application (23.1ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered layouts/_header.html.erb (2.3ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 65ms (Views: 51.9ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/signout" for 127.0.0.1 at 2013-04-26 04:58:03 -0400
+Processing by SessionsController#destroy as HTML
+Redirected to http://localhost:3000/
+Completed 302 Found in 72ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-04-26 04:58:03 -0400
+Processing by TweetsController#new as HTML
+  Rendered shared/_error_messages.html.erb (0.1ms)
+  [1m[36mTweet Load (0.2ms)[0m  [1mSELECT "tweets".* FROM "tweets" [0m
+  [1m[35mFinalTweet Load (0.2ms)[0m  SELECT "final_tweets".* FROM "final_tweets" 
+  Rendered shared/_error_messages.html.erb (0.1ms)
+  [1m[36mTweet Load (0.2ms)[0m  [1mSELECT "tweets".* FROM "tweets" ORDER BY score desc[0m
+  [1m[35mTweet Load (0.2ms)[0m  SELECT "tweets".* FROM "tweets" ORDER BY score DESC LIMIT 10 OFFSET 0
+  Rendered tweets/new.html.erb within layouts/application (11.7ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+  Rendered layouts/_footer.html.erb (0.7ms)
+Completed 200 OK in 53ms (Views: 51.6ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/auth/twitter" for 127.0.0.1 at 2013-04-26 04:58:05 -0400
+(twitter) Request phase initiated.
+
+
+Started GET "/auth/twitter/callback?oauth_token=uvL9ZMtrANXZj3rii6OSAK16aXRlT3fqVqUiZQTORQ&oauth_verifier=c7ECDvWl9lyPYaXSbXf0gDb5IfCRBvQQ9lKcJ6yDk" for 127.0.0.1 at 2013-04-26 04:58:08 -0400
+(twitter) Callback phase initiated.
+Processing by SessionsController#create as HTML
+  Parameters: {"oauth_token"=>"uvL9ZMtrANXZj3rii6OSAK16aXRlT3fqVqUiZQTORQ", "oauth_verifier"=>"c7ECDvWl9lyPYaXSbXf0gDb5IfCRBvQQ9lKcJ6yDk"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."provider" = 'twitter' AND "users"."uid" = 216810199 LIMIT 1[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-04-26 04:58:09 -0400
+Processing by TweetsController#new as HTML
+  Rendered shared/_error_messages.html.erb (0.1ms)
+  [1m[35mTweet Load (0.1ms)[0m  SELECT "tweets".* FROM "tweets" 
+  [1m[36mFinalTweet Load (0.1ms)[0m  [1mSELECT "final_tweets".* FROM "final_tweets" [0m
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  [1m[35mTweet Load (0.1ms)[0m  SELECT "tweets".* FROM "tweets" ORDER BY score desc
+  [1m[36mTweet Load (0.1ms)[0m  [1mSELECT "tweets".* FROM "tweets" ORDER BY score DESC LIMIT 10 OFFSET 0[0m
+  Rendered tweets/new.html.erb within layouts/application (7.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered layouts/_header.html.erb (1.7ms)
+  Rendered layouts/_footer.html.erb (0.4ms)
+Completed 200 OK in 32ms (Views: 30.7ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/tweets" for 127.0.0.1 at 2013-04-26 04:58:29 -0400
+Processing by TweetsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"TdW9Dq07kGYVr9ApMXd8vlv+EGv/MFR+LuM+CaxDDAg=", "tweet"=>{"text"=>"Does this tweet work? "}}
+  [1m[36mIPAddress Load (0.2ms)[0m  [1mSELECT "ip_addresses".* FROM "ip_addresses" WHERE "ip_addresses"."ip" = '127.0.0.1' LIMIT 1[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 417ms (ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-04-26 04:58:29 -0400
+Processing by TweetsController#new as HTML
+  Rendered shared/_error_messages.html.erb (0.1ms)
+  [1m[35mTweet Load (0.2ms)[0m  SELECT "tweets".* FROM "tweets" 
+  [1m[36mFinalTweet Load (0.1ms)[0m  [1mSELECT "final_tweets".* FROM "final_tweets" [0m
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  [1m[35mTweet Load (0.1ms)[0m  SELECT "tweets".* FROM "tweets" ORDER BY score desc
+  [1m[36mTweet Load (0.2ms)[0m  [1mSELECT "tweets".* FROM "tweets" ORDER BY score DESC LIMIT 10 OFFSET 0[0m
+  Rendered tweets/new.html.erb within layouts/application (6.9ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered layouts/_header.html.erb (2.2ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 32ms (Views: 31.0ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/tweets" for 127.0.0.1 at 2013-04-26 04:58:44 -0400
+Processing by TweetsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"TdW9Dq07kGYVr9ApMXd8vlv+EGv/MFR+LuM+CaxDDAg=", "tweet"=>{"text"=>"Does this tweet work? "}}
+  [1m[36mIPAddress Load (0.2ms)[0m  [1mSELECT "ip_addresses".* FROM "ip_addresses" WHERE "ip_addresses"."ip" = '127.0.0.1' LIMIT 1[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 180ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-04-26 04:58:44 -0400
+Processing by TweetsController#new as HTML
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  [1m[35mTweet Load (0.1ms)[0m  SELECT "tweets".* FROM "tweets" 
+  [1m[36mFinalTweet Load (0.1ms)[0m  [1mSELECT "final_tweets".* FROM "final_tweets" [0m
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  [1m[35mTweet Load (0.2ms)[0m  SELECT "tweets".* FROM "tweets" ORDER BY score desc
+  [1m[36mTweet Load (0.1ms)[0m  [1mSELECT "tweets".* FROM "tweets" ORDER BY score DESC LIMIT 10 OFFSET 0[0m
+  Rendered tweets/new.html.erb within layouts/application (7.1ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered layouts/_header.html.erb (1.6ms)
+  Rendered layouts/_footer.html.erb (0.4ms)
+Completed 200 OK in 31ms (Views: 30.4ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/tweets" for 127.0.0.1 at 2013-04-26 04:59:05 -0400
+Processing by TweetsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"TdW9Dq07kGYVr9ApMXd8vlv+EGv/MFR+LuM+CaxDDAg=", "tweet"=>{"text"=>"What the heck. This better work"}}
+  [1m[36mIPAddress Load (0.2ms)[0m  [1mSELECT "ip_addresses".* FROM "ip_addresses" WHERE "ip_addresses"."ip" = '127.0.0.1' LIMIT 1[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 177ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-04-26 04:59:06 -0400
+Processing by TweetsController#new as HTML
+  Rendered shared/_error_messages.html.erb (0.1ms)
+  [1m[35mTweet Load (0.2ms)[0m  SELECT "tweets".* FROM "tweets" 
+  [1m[36mFinalTweet Load (0.1ms)[0m  [1mSELECT "final_tweets".* FROM "final_tweets" [0m
+  Rendered shared/_error_messages.html.erb (0.1ms)
+  [1m[35mTweet Load (2.3ms)[0m  SELECT "tweets".* FROM "tweets" ORDER BY score desc
+  [1m[36mTweet Load (0.3ms)[0m  [1mSELECT "tweets".* FROM "tweets" ORDER BY score DESC LIMIT 10 OFFSET 0[0m
+  Rendered tweets/new.html.erb within layouts/application (13.8ms)
+  Rendered layouts/_shim.html.erb (0.2ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered layouts/_header.html.erb (2.9ms)
+  Rendered layouts/_footer.html.erb (0.8ms)
+Completed 200 OK in 150ms (Views: 146.5ms | ActiveRecord: 3.0ms)
+
+
+Started POST "/tweets" for 127.0.0.1 at 2013-04-26 04:59:16 -0400
+Processing by TweetsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"TdW9Dq07kGYVr9ApMXd8vlv+EGv/MFR+LuM+CaxDDAg=", "tweet"=>{"text"=>"awefasdfasdfasdf"}}
+  [1m[36mIPAddress Load (0.2ms)[0m  [1mSELECT "ip_addresses".* FROM "ip_addresses" WHERE "ip_addresses"."ip" = '127.0.0.1' LIMIT 1[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 165ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-04-26 04:59:16 -0400
+Processing by TweetsController#new as HTML
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  [1m[35mTweet Load (0.2ms)[0m  SELECT "tweets".* FROM "tweets" 
+  [1m[36mFinalTweet Load (0.1ms)[0m  [1mSELECT "final_tweets".* FROM "final_tweets" [0m
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  [1m[35mTweet Load (0.1ms)[0m  SELECT "tweets".* FROM "tweets" ORDER BY score desc
+  [1m[36mTweet Load (0.2ms)[0m  [1mSELECT "tweets".* FROM "tweets" ORDER BY score DESC LIMIT 10 OFFSET 0[0m
+  Rendered tweets/new.html.erb within layouts/application (7.1ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered layouts/_header.html.erb (1.6ms)
+  Rendered layouts/_footer.html.erb (0.6ms)
+Completed 200 OK in 34ms (Views: 32.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-04-26 05:02:30 -0400
+Processing by TweetsController#new as HTML
+  Rendered shared/_error_messages.html.erb (0.1ms)
+  [1m[36mTweet Load (0.2ms)[0m  [1mSELECT "tweets".* FROM "tweets" [0m
+  [1m[35mFinalTweet Load (0.1ms)[0m  SELECT "final_tweets".* FROM "final_tweets" 
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  [1m[36mTweet Load (0.1ms)[0m  [1mSELECT "tweets".* FROM "tweets" ORDER BY score desc[0m
+  [1m[35mTweet Load (0.2ms)[0m  SELECT "tweets".* FROM "tweets" ORDER BY score DESC LIMIT 10 OFFSET 0
+  Rendered tweets/new.html.erb within layouts/application (11.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_header.html.erb (1.6ms)
+  Rendered layouts/_footer.html.erb (0.4ms)
+Completed 200 OK in 34ms (Views: 33.5ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-04-26 05:02:30 -0400
+Served asset /application.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2013-04-26 05:02:30 -0400
+Served asset /custom.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/font-awesome-ie7.min.css?body=1" for 127.0.0.1 at 2013-04-26 05:02:30 -0400
+Served asset /font-awesome-ie7.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/final_tweets.css?body=1" for 127.0.0.1 at 2013-04-26 05:02:30 -0400
+Served asset /final_tweets.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/font-awesome.min.css?body=1" for 127.0.0.1 at 2013-04-26 05:02:30 -0400
+Served asset /font-awesome.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/font-awesome.css?body=1" for 127.0.0.1 at 2013-04-26 05:02:30 -0400
+Served asset /font-awesome.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/ip_addresses.css?body=1" for 127.0.0.1 at 2013-04-26 05:02:30 -0400
+Served asset /ip_addresses.css - 304 Not Modified (6ms)
+
+
+Started GET "/assets/sessions.css?body=1" for 127.0.0.1 at 2013-04-26 05:02:30 -0400
+Served asset /sessions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/static_pages.css?body=1" for 127.0.0.1 at 2013-04-26 05:02:30 -0400
+Served asset /static_pages.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/tweets.css?body=1" for 127.0.0.1 at 2013-04-26 05:02:30 -0400
+Served asset /tweets.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2013-04-26 05:02:30 -0400
+Served asset /users.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-04-26 05:02:30 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-04-26 05:02:30 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-04-26 05:02:30 -0400
+Served asset /bootstrap-transition.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-04-26 05:02:30 -0400
+Served asset /bootstrap-affix.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-04-26 05:02:30 -0400
+Served asset /bootstrap-alert.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-04-26 05:02:30 -0400
+Served asset /bootstrap-button.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-04-26 05:02:30 -0400
+Served asset /bootstrap-carousel.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-04-26 05:02:30 -0400
+Served asset /bootstrap-collapse.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-04-26 05:02:30 -0400
+Served asset /bootstrap-modal.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-04-26 05:02:30 -0400
+Served asset /bootstrap-scrollspy.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-04-26 05:02:30 -0400
+Served asset /bootstrap-dropdown.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-04-26 05:02:30 -0400
+Served asset /bootstrap-tab.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-04-26 05:02:30 -0400
+Served asset /bootstrap-tooltip.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-04-26 05:02:30 -0400
+Served asset /bootstrap-popover.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-04-26 05:02:30 -0400
+Served asset /bootstrap-typeahead.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-04-26 05:02:30 -0400
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/final_tweets.js?body=1" for 127.0.0.1 at 2013-04-26 05:02:30 -0400
+Served asset /final_tweets.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/ip_addresses.js?body=1" for 127.0.0.1 at 2013-04-26 05:02:30 -0400
+Served asset /ip_addresses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sessions.js?body=1" for 127.0.0.1 at 2013-04-26 05:02:30 -0400
+Served asset /sessions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/static_pages.js?body=1" for 127.0.0.1 at 2013-04-26 05:02:30 -0400
+Served asset /static_pages.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/tweets.js?body=1" for 127.0.0.1 at 2013-04-26 05:02:30 -0400
+Served asset /tweets.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2013-04-26 05:02:30 -0400
+Served asset /users.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-04-26 05:02:30 -0400
+Served asset /application.js - 304 Not Modified (1ms)
+
+
+Started POST "/tweets" for 127.0.0.1 at 2013-04-26 05:02:36 -0400
+Processing by TweetsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"TdW9Dq07kGYVr9ApMXd8vlv+EGv/MFR+LuM+CaxDDAg=", "tweet"=>{"text"=>"Hello Does this work"}}
+  [1m[35mIPAddress Load (0.2ms)[0m  SELECT "ip_addresses".* FROM "ip_addresses" WHERE "ip_addresses"."ip" = '127.0.0.1' LIMIT 1
+Redirected to http://localhost:3000/
+Completed 302 Found in 179ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-04-26 05:02:37 -0400
+Processing by TweetsController#new as HTML
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  [1m[36mTweet Load (0.1ms)[0m  [1mSELECT "tweets".* FROM "tweets" [0m
+  [1m[35mFinalTweet Load (0.1ms)[0m  SELECT "final_tweets".* FROM "final_tweets" 
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  [1m[36mTweet Load (0.1ms)[0m  [1mSELECT "tweets".* FROM "tweets" ORDER BY score desc[0m
+  [1m[35mTweet Load (0.2ms)[0m  SELECT "tweets".* FROM "tweets" ORDER BY score DESC LIMIT 10 OFFSET 0
+  Rendered tweets/new.html.erb within layouts/application (6.8ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_header.html.erb (1.7ms)
+  Rendered layouts/_footer.html.erb (0.4ms)
+Completed 200 OK in 30ms (Views: 29.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-04-26 05:02:37 -0400
+Served asset /application.css - 304 Not Modified (5ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2013-04-26 05:02:37 -0400
+Served asset /custom.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/final_tweets.css?body=1" for 127.0.0.1 at 2013-04-26 05:02:37 -0400
+Served asset /final_tweets.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/font-awesome-ie7.min.css?body=1" for 127.0.0.1 at 2013-04-26 05:02:37 -0400
+Served asset /font-awesome-ie7.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/font-awesome.css?body=1" for 127.0.0.1 at 2013-04-26 05:02:37 -0400
+Served asset /font-awesome.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/font-awesome.min.css?body=1" for 127.0.0.1 at 2013-04-26 05:02:37 -0400
+Served asset /font-awesome.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/ip_addresses.css?body=1" for 127.0.0.1 at 2013-04-26 05:02:37 -0400
+Served asset /ip_addresses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sessions.css?body=1" for 127.0.0.1 at 2013-04-26 05:02:37 -0400
+Served asset /sessions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/tweets.css?body=1" for 127.0.0.1 at 2013-04-26 05:02:37 -0400
+Served asset /tweets.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/static_pages.css?body=1" for 127.0.0.1 at 2013-04-26 05:02:37 -0400
+Served asset /static_pages.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2013-04-26 05:02:37 -0400
+Served asset /users.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-04-26 05:02:37 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-04-26 05:02:37 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-04-26 05:02:37 -0400
+Served asset /bootstrap-transition.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-04-26 05:02:37 -0400
+Served asset /bootstrap-affix.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-04-26 05:02:37 -0400
+Served asset /bootstrap-alert.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-04-26 05:02:37 -0400
+Served asset /bootstrap-button.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-04-26 05:02:37 -0400
+Served asset /bootstrap-collapse.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-04-26 05:02:37 -0400
+Served asset /bootstrap-carousel.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-04-26 05:02:37 -0400
+Served asset /bootstrap-dropdown.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-04-26 05:02:37 -0400
+Served asset /bootstrap-modal.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-04-26 05:02:37 -0400
+Served asset /bootstrap-scrollspy.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-04-26 05:02:37 -0400
+Served asset /bootstrap-tab.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-04-26 05:02:37 -0400
+Served asset /bootstrap-tooltip.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-04-26 05:02:37 -0400
+Served asset /bootstrap-popover.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-04-26 05:02:37 -0400
+Served asset /bootstrap-typeahead.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-04-26 05:02:37 -0400
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/final_tweets.js?body=1" for 127.0.0.1 at 2013-04-26 05:02:37 -0400
+Served asset /final_tweets.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/ip_addresses.js?body=1" for 127.0.0.1 at 2013-04-26 05:02:37 -0400
+Served asset /ip_addresses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/static_pages.js?body=1" for 127.0.0.1 at 2013-04-26 05:02:37 -0400
+Served asset /static_pages.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sessions.js?body=1" for 127.0.0.1 at 2013-04-26 05:02:37 -0400
+Served asset /sessions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/tweets.js?body=1" for 127.0.0.1 at 2013-04-26 05:02:37 -0400
+Served asset /tweets.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2013-04-26 05:02:37 -0400
+Served asset /users.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-04-26 05:02:37 -0400
+Served asset /application.js - 304 Not Modified (1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-04-26 05:07:57 -0400
+Processing by TweetsController#new as HTML
+  Rendered shared/_error_messages.html.erb (0.1ms)
+  [1m[35mTweet Load (0.2ms)[0m  SELECT "tweets".* FROM "tweets" 
+  [1m[36mFinalTweet Load (0.1ms)[0m  [1mSELECT "final_tweets".* FROM "final_tweets" [0m
+  Rendered shared/_error_messages.html.erb (0.1ms)
+  [1m[35mTweet Load (0.2ms)[0m  SELECT "tweets".* FROM "tweets" ORDER BY score desc
+  [1m[36mTweet Load (0.2ms)[0m  [1mSELECT "tweets".* FROM "tweets" ORDER BY score DESC LIMIT 10 OFFSET 0[0m
+  Rendered tweets/new.html.erb within layouts/application (18.9ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered layouts/_header.html.erb (14.3ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 75ms (Views: 62.4ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-04-26 05:07:57 -0400
+Served asset /application.css - 304 Not Modified (10ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2013-04-26 05:07:57 -0400
+Served asset /custom.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/final_tweets.css?body=1" for 127.0.0.1 at 2013-04-26 05:07:57 -0400
+Served asset /final_tweets.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/font-awesome.min.css?body=1" for 127.0.0.1 at 2013-04-26 05:07:57 -0400
+Served asset /font-awesome.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/font-awesome-ie7.min.css?body=1" for 127.0.0.1 at 2013-04-26 05:07:57 -0400
+Served asset /font-awesome-ie7.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/font-awesome.css?body=1" for 127.0.0.1 at 2013-04-26 05:07:58 -0400
+Served asset /font-awesome.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sessions.css?body=1" for 127.0.0.1 at 2013-04-26 05:07:58 -0400
+Served asset /sessions.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/ip_addresses.css?body=1" for 127.0.0.1 at 2013-04-26 05:07:58 -0400
+Served asset /ip_addresses.css - 304 Not Modified (4ms)
+
+
+Started GET "/assets/static_pages.css?body=1" for 127.0.0.1 at 2013-04-26 05:07:58 -0400
+Served asset /static_pages.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/tweets.css?body=1" for 127.0.0.1 at 2013-04-26 05:07:58 -0400
+Served asset /tweets.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2013-04-26 05:07:58 -0400
+Served asset /users.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-04-26 05:07:58 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-04-26 05:07:58 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-04-26 05:07:58 -0400
+Served asset /bootstrap-affix.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-04-26 05:07:58 -0400
+Served asset /bootstrap-transition.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-04-26 05:07:58 -0400
+Served asset /bootstrap-alert.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-04-26 05:07:58 -0400
+Served asset /bootstrap-button.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-04-26 05:07:58 -0400
+Served asset /bootstrap-carousel.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-04-26 05:07:58 -0400
+Served asset /bootstrap-collapse.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-04-26 05:07:58 -0400
+Served asset /bootstrap-dropdown.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-04-26 05:07:58 -0400
+Served asset /bootstrap-modal.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-04-26 05:07:58 -0400
+Served asset /bootstrap-scrollspy.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-04-26 05:07:58 -0400
+Served asset /bootstrap-tab.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-04-26 05:07:58 -0400
+Served asset /bootstrap-tooltip.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-04-26 05:07:58 -0400
+Served asset /bootstrap-popover.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-04-26 05:07:58 -0400
+Served asset /bootstrap-typeahead.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-04-26 05:07:58 -0400
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/final_tweets.js?body=1" for 127.0.0.1 at 2013-04-26 05:07:58 -0400
+Served asset /final_tweets.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/ip_addresses.js?body=1" for 127.0.0.1 at 2013-04-26 05:07:58 -0400
+Served asset /ip_addresses.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/sessions.js?body=1" for 127.0.0.1 at 2013-04-26 05:07:58 -0400
+Served asset /sessions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/static_pages.js?body=1" for 127.0.0.1 at 2013-04-26 05:07:58 -0400
+Served asset /static_pages.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/tweets.js?body=1" for 127.0.0.1 at 2013-04-26 05:07:58 -0400
+Served asset /tweets.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2013-04-26 05:07:58 -0400
+Served asset /users.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-04-26 05:07:58 -0400
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started POST "/tweets" for 127.0.0.1 at 2013-04-26 05:08:03 -0400
+Processing by TweetsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"TdW9Dq07kGYVr9ApMXd8vlv+EGv/MFR+LuM+CaxDDAg=", "tweet"=>{"text"=>"Hello Does this work"}}
+  [1m[36mIPAddress Load (0.2ms)[0m  [1mSELECT "ip_addresses".* FROM "ip_addresses" WHERE "ip_addresses"."ip" = '127.0.0.1' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "tweets" ("created_at", "score", "text") VALUES (?, ?, ?)[0m  [["created_at", Fri, 26 Apr 2013 09:08:03 UTC +00:00], ["score", 0], ["text", "Hello Does this work"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+Binary data inserted for `string` type on column `ip`
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "ip_addresses" ("created_at", "downvoted", "ip", "tweeted", "upvoted") VALUES (?, ?, ?, ?, ?)  [["created_at", Fri, 26 Apr 2013 09:08:03 UTC +00:00], ["downvoted", false], ["ip", "127.0.0.1"], ["tweeted", true], ["upvoted", false]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 37ms (ActiveRecord: 5.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-04-26 05:08:03 -0400
+Processing by TweetsController#new as HTML
+  Rendered shared/_error_messages.html.erb (0.1ms)
+  [1m[35mTweet Load (0.2ms)[0m  SELECT "tweets".* FROM "tweets" 
+  [1m[36mFinalTweet Load (1.8ms)[0m  [1mSELECT "final_tweets".* FROM "final_tweets" [0m
+  Rendered shared/_error_messages.html.erb (0.1ms)
+  [1m[35mTweet Load (0.2ms)[0m  SELECT "tweets".* FROM "tweets" ORDER BY score desc
+  [1m[36mTweet Load (0.3ms)[0m  [1mSELECT "tweets".* FROM "tweets" ORDER BY score DESC LIMIT 10 OFFSET 0[0m
+  Rendered tweets/new.html.erb within layouts/application (17.7ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered layouts/_header.html.erb (3.6ms)
+  Rendered layouts/_footer.html.erb (0.9ms)
+Completed 200 OK in 69ms (Views: 66.0ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/assets/final_tweets.css?body=1" for 127.0.0.1 at 2013-04-26 05:08:04 -0400
+Served asset /final_tweets.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2013-04-26 05:08:04 -0400
+Served asset /custom.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/font-awesome.min.css?body=1" for 127.0.0.1 at 2013-04-26 05:08:04 -0400
+Served asset /font-awesome.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/font-awesome-ie7.min.css?body=1" for 127.0.0.1 at 2013-04-26 05:08:04 -0400
+Served asset /font-awesome-ie7.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-04-26 05:08:04 -0400
+Served asset /application.css - 304 Not Modified (15ms)
+
+
+Started GET "/assets/font-awesome.css?body=1" for 127.0.0.1 at 2013-04-26 05:08:04 -0400
+Served asset /font-awesome.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sessions.css?body=1" for 127.0.0.1 at 2013-04-26 05:08:04 -0400
+Served asset /sessions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/ip_addresses.css?body=1" for 127.0.0.1 at 2013-04-26 05:08:04 -0400
+Served asset /ip_addresses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/static_pages.css?body=1" for 127.0.0.1 at 2013-04-26 05:08:04 -0400
+Served asset /static_pages.css - 304 Not Modified (10ms)
+
+
+Started GET "/assets/tweets.css?body=1" for 127.0.0.1 at 2013-04-26 05:08:04 -0400
+Served asset /tweets.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2013-04-26 05:08:04 -0400
+Served asset /users.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:04 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:04 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:04 -0400
+Served asset /bootstrap-button.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:04 -0400
+Served asset /bootstrap-transition.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:04 -0400
+Served asset /bootstrap-alert.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:04 -0400
+Served asset /bootstrap-affix.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:04 -0400
+Served asset /bootstrap-carousel.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:04 -0400
+Served asset /bootstrap-dropdown.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:04 -0400
+Served asset /bootstrap-collapse.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:04 -0400
+Served asset /bootstrap-modal.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:04 -0400
+Served asset /bootstrap-tab.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:04 -0400
+Served asset /bootstrap-scrollspy.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:04 -0400
+Served asset /bootstrap-tooltip.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:04 -0400
+Served asset /bootstrap-typeahead.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:04 -0400
+Served asset /bootstrap-popover.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/final_tweets.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:04 -0400
+Served asset /final_tweets.js - 304 Not Modified (8ms)
+
+
+Started GET "/assets/ip_addresses.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:04 -0400
+Served asset /ip_addresses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:04 -0400
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sessions.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:04 -0400
+Served asset /sessions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/static_pages.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:04 -0400
+Served asset /static_pages.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/tweets.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:04 -0400
+Served asset /tweets.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:04 -0400
+Served asset /application.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:04 -0400
+Served asset /users.js - 304 Not Modified (0ms)
+
+
+Started GET "/tweets/1/upvote" for 127.0.0.1 at 2013-04-26 05:08:11 -0400
+Processing by TweetsController#upvote as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mTweet Load (0.2ms)[0m  [1mSELECT "tweets".* FROM "tweets" WHERE "tweets"."id" = 1 LIMIT 1[0m
+  [1m[35mIPAddress Load (0.1ms)[0m  SELECT "ip_addresses".* FROM "ip_addresses" WHERE "ip_addresses"."ip" = '127.0.0.1' LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  UPDATE "ip_addresses" SET "upvoted" = 't' WHERE "ip_addresses"."id" = 1
+  [1m[36m (2.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mUPDATE "tweets" SET "score" = 1 WHERE "tweets"."id" = 1[0m
+  [1m[35m (0.8ms)[0m  commit transaction
+Redirected to http://localhost:3000/
+Completed 302 Found in 12ms (ActiveRecord: 4.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-04-26 05:08:11 -0400
+Processing by TweetsController#new as HTML
+  Rendered shared/_error_messages.html.erb (0.1ms)
+  [1m[36mTweet Load (0.2ms)[0m  [1mSELECT "tweets".* FROM "tweets" [0m
+  [1m[35mFinalTweet Load (0.2ms)[0m  SELECT "final_tweets".* FROM "final_tweets" 
+  Rendered shared/_error_messages.html.erb (0.1ms)
+  [1m[36mTweet Load (0.2ms)[0m  [1mSELECT "tweets".* FROM "tweets" ORDER BY score desc[0m
+  [1m[35mTweet Load (0.3ms)[0m  SELECT "tweets".* FROM "tweets" ORDER BY score DESC LIMIT 10 OFFSET 0
+  Rendered tweets/new.html.erb within layouts/application (13.6ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_header.html.erb (1.8ms)
+  Rendered layouts/_footer.html.erb (0.8ms)
+Completed 200 OK in 48ms (Views: 46.8ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-04-26 05:08:11 -0400
+Served asset /application.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/final_tweets.css?body=1" for 127.0.0.1 at 2013-04-26 05:08:11 -0400
+Served asset /final_tweets.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2013-04-26 05:08:11 -0400
+Served asset /custom.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/font-awesome.min.css?body=1" for 127.0.0.1 at 2013-04-26 05:08:11 -0400
+Served asset /font-awesome.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/font-awesome.css?body=1" for 127.0.0.1 at 2013-04-26 05:08:11 -0400
+Served asset /font-awesome.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/font-awesome-ie7.min.css?body=1" for 127.0.0.1 at 2013-04-26 05:08:11 -0400
+Served asset /font-awesome-ie7.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/static_pages.css?body=1" for 127.0.0.1 at 2013-04-26 05:08:11 -0400
+Served asset /static_pages.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/sessions.css?body=1" for 127.0.0.1 at 2013-04-26 05:08:11 -0400
+Served asset /sessions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/ip_addresses.css?body=1" for 127.0.0.1 at 2013-04-26 05:08:11 -0400
+Served asset /ip_addresses.css - 304 Not Modified (6ms)
+
+
+Started GET "/assets/tweets.css?body=1" for 127.0.0.1 at 2013-04-26 05:08:11 -0400
+Served asset /tweets.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2013-04-26 05:08:11 -0400
+Served asset /users.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:11 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:11 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:11 -0400
+Served asset /bootstrap-transition.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:11 -0400
+Served asset /bootstrap-alert.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:11 -0400
+Served asset /bootstrap-button.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:11 -0400
+Served asset /bootstrap-affix.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:11 -0400
+Served asset /bootstrap-carousel.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:11 -0400
+Served asset /bootstrap-collapse.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:11 -0400
+Served asset /bootstrap-dropdown.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:11 -0400
+Served asset /bootstrap-modal.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:11 -0400
+Served asset /bootstrap-scrollspy.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:11 -0400
+Served asset /bootstrap-tab.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:11 -0400
+Served asset /bootstrap-tooltip.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:11 -0400
+Served asset /bootstrap-typeahead.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:11 -0400
+Served asset /bootstrap-popover.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:11 -0400
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/final_tweets.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:11 -0400
+Served asset /final_tweets.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/ip_addresses.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:11 -0400
+Served asset /ip_addresses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sessions.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:11 -0400
+Served asset /sessions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/static_pages.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:11 -0400
+Served asset /static_pages.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/tweets.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:11 -0400
+Served asset /tweets.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:11 -0400
+Served asset /users.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:11 -0400
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/tweets/1/downvote" for 127.0.0.1 at 2013-04-26 05:08:13 -0400
+Processing by TweetsController#downvote as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mTweet Load (0.2ms)[0m  SELECT "tweets".* FROM "tweets" WHERE "tweets"."id" = 1 LIMIT 1
+  [1m[36mIPAddress Load (0.1ms)[0m  [1mSELECT "ip_addresses".* FROM "ip_addresses" WHERE "ip_addresses"."ip" = '127.0.0.1' LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mUPDATE "ip_addresses" SET "downvoted" = 't' WHERE "ip_addresses"."id" = 1[0m
+  [1m[35m (2.2ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  UPDATE "tweets" SET "score" = 0 WHERE "tweets"."id" = 1
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 9ms (ActiveRecord: 3.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-04-26 05:08:13 -0400
+Processing by TweetsController#new as HTML
+  Rendered shared/_error_messages.html.erb (0.1ms)
+  [1m[35mTweet Load (0.2ms)[0m  SELECT "tweets".* FROM "tweets" 
+  [1m[36mFinalTweet Load (0.2ms)[0m  [1mSELECT "final_tweets".* FROM "final_tweets" [0m
+  Rendered shared/_error_messages.html.erb (0.1ms)
+  [1m[35mTweet Load (0.2ms)[0m  SELECT "tweets".* FROM "tweets" ORDER BY score desc
+  [1m[36mTweet Load (0.3ms)[0m  [1mSELECT "tweets".* FROM "tweets" ORDER BY score DESC LIMIT 10 OFFSET 0[0m
+  Rendered tweets/new.html.erb within layouts/application (13.5ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered layouts/_header.html.erb (1.8ms)
+  Rendered layouts/_footer.html.erb (0.4ms)
+Completed 200 OK in 104ms (Views: 102.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-04-26 05:08:13 -0400
+Served asset /application.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2013-04-26 05:08:13 -0400
+Served asset /custom.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/font-awesome-ie7.min.css?body=1" for 127.0.0.1 at 2013-04-26 05:08:13 -0400
+Served asset /font-awesome-ie7.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/font-awesome.min.css?body=1" for 127.0.0.1 at 2013-04-26 05:08:13 -0400
+Served asset /font-awesome.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/font-awesome.css?body=1" for 127.0.0.1 at 2013-04-26 05:08:13 -0400
+Served asset /font-awesome.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/final_tweets.css?body=1" for 127.0.0.1 at 2013-04-26 05:08:13 -0400
+Served asset /final_tweets.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/ip_addresses.css?body=1" for 127.0.0.1 at 2013-04-26 05:08:13 -0400
+Served asset /ip_addresses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sessions.css?body=1" for 127.0.0.1 at 2013-04-26 05:08:13 -0400
+Served asset /sessions.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/static_pages.css?body=1" for 127.0.0.1 at 2013-04-26 05:08:13 -0400
+Served asset /static_pages.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/tweets.css?body=1" for 127.0.0.1 at 2013-04-26 05:08:13 -0400
+Served asset /tweets.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:13 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2013-04-26 05:08:13 -0400
+Served asset /users.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:13 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:13 -0400
+Served asset /bootstrap-transition.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:13 -0400
+Served asset /bootstrap-affix.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:13 -0400
+Served asset /bootstrap-alert.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:13 -0400
+Served asset /bootstrap-button.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:13 -0400
+Served asset /bootstrap-carousel.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:13 -0400
+Served asset /bootstrap-collapse.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:13 -0400
+Served asset /bootstrap-dropdown.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:13 -0400
+Served asset /bootstrap-modal.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:13 -0400
+Served asset /bootstrap-scrollspy.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:13 -0400
+Served asset /bootstrap-tab.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:13 -0400
+Served asset /bootstrap-tooltip.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:13 -0400
+Served asset /bootstrap-popover.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:13 -0400
+Served asset /bootstrap-typeahead.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:13 -0400
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/final_tweets.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:13 -0400
+Served asset /final_tweets.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/ip_addresses.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:13 -0400
+Served asset /ip_addresses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sessions.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:13 -0400
+Served asset /sessions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/static_pages.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:13 -0400
+Served asset /static_pages.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/tweets.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:13 -0400
+Served asset /tweets.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:13 -0400
+Served asset /users.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-04-26 05:08:13 -0400
+Served asset /application.js - 304 Not Modified (0ms)

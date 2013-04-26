@@ -8,10 +8,13 @@ class ApplicationController < ActionController::Base
     super
   end
 
-  private
+  	private
 
-def current_user
-  @current_user ||= User.find(session[:user_id]) if session[:user_id]
-end
-helper_method :current_user
+	def current_user
+	  @current_user ||= User.find(session[:user_id]) if session[:user_id]
+		#This rescue is a hacky way to fix the fact that sometimes the user may not exist in db. Like if i clear the db. 
+		rescue ActiveRecord::RecordNotFound 
+
+	end
+	helper_method :current_user
 end
