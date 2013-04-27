@@ -8,9 +8,6 @@ SampleApp::Application.routes.draw do
   resources :microposts, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
 
-
-  # root to: 'static_pages#home'
-
   root to: 'tweets#new'
 
   match '/signup',  to: 'users#new'
@@ -24,6 +21,13 @@ SampleApp::Application.routes.draw do
   match '/help',    to: 'static_pages#help'
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
+
+  # Added 4-26-2013
+  resources :final_tweets do
+    collection do
+      get :index
+    end
+  end
 
   # Added 4-23-2013
   resources :tweets do

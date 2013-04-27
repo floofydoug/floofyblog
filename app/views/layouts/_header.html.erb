@@ -1,15 +1,17 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="navbar-inner">
     <div class="container">
-      <%= link_to "InternetFeels", root_path, id: "logo" %>
+      <%= link_to "Internet", root_path, id: "logo-white" %>
+      <%= link_to "Feels", root_path, id: "logo-blue" %>
       <nav>
         <ul class="nav pull-right">
-         <% if current_user %>
-                Signed in as <%= current_user.name %>!
-                <%= link_to "Sign out", signout_path %>
-              <% else %>
-                <%= link_to "Sign in with Twitter", "/auth/twitter" %>
-              <% end %>
+          <li><%= link_to "Published tweets", final_tweets_path %></li>
+          <% if current_user %>
+            Signed in as <%= current_user.name %>!
+            <li><%= link_to "Sign out", signout_path %></li>
+          <% else %>
+            <li><%= link_to "Sign in with Twitter", "/auth/twitter" %></li>
+          <% end %>
       </nav>
     </div>
   </div>
