@@ -7,8 +7,7 @@
         <ul class="nav pull-right">
           <li><%= link_to "Published tweets", final_tweets_path %></li>
           <% if current_user %>
-            Signed in as <%= current_user.name %>!
-            <li><%= link_to "Sign out", signout_path %></li>
+            <li><%= link_to "Sign out @#{current_user.name}", signout_path %></li>
           <% else %>
             <li><%= link_to "Sign in with Twitter", "/auth/twitter" %></li>
           <% end %>
