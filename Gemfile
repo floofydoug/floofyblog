@@ -12,6 +12,7 @@ gem 'simple_form'
 # Added 4-23-13
 gem "recaptcha", :require => "recaptcha/rails"
 gem "delayed_job", "~> 3.0.5"
+gem 'omniauth-twitter', :github => 'arunagw/omniauth-twitter'
 
 # Added 4-21-13
 gem "rake", "~> 10.0.4"

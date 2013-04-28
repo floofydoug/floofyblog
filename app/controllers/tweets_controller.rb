@@ -22,13 +22,13 @@ class TweetsController < ApplicationController
     elsif @ip_address && !@ip_address.tweeted
       
       # Recaptcha implementation
-      if verify_recaptcha(:model => @tweet) && @tweet.save
+      if @tweet.save
         @ip_address.tweeted = true
         @ip_address.save
         flash[:success] = "Tweet submitted!"
         redirect_to root_url
       else
-        flash[:error] = "You must complete every field."
+        flash[:error] = "You must have something to say..."
         redirect_to root_url
       end
 
@@ -36,7 +36,7 @@ class TweetsController < ApplicationController
     elsif !@ip_address
       
       # Recaptcha implementation
-      if verify_recaptcha(:model => @tweet) && @tweet.save
+      if @tweet.save
         @ip_address = IPAddress.new
         @ip_address.ip = current_ip
         @ip_address.tweeted = true

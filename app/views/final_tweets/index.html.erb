@@ -1,0 +1,15 @@
+<% provide(:title, 'Published tweets') %>
+<h1><%= link_to "@internetfeels", "https://twitter.com/internetfeels" %> published tweets</h1>
+
+<div class="row">
+  <aside class="span6">
+    <!-- List published tweets -->
+    <section>        
+      <% if @final_tweets %>
+        <% @final_tweets.each do |final_tweet| %>
+          <%= final_tweet.text %><br>
+        <% end %>
+      <% end %>
+    </section>
+  </aside>
+</div>
