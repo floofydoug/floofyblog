@@ -44,12 +44,17 @@
       <%= form_for(@tweet) do |f| %>
         <%= render 'shared/error_messages', object: @tweet %>
         <div class="input-append"> 
-        <%= f.text_field :text, :style => "width: 280px;"%>
+        <%= f.text_field :text, :id=>"doug", :style => "width: 280px;"%>
         
           <!-- Submit button -->
           <%= button_tag(type: 'submit', :style => "width: 100px;", class: "btn btn-info") do %>
-            <i class="icon-twitter icon-white"></i>Tweet&nbsp;&nbsp;&nbsp;&nbsp;
+            <i class="icon-twitter icon-white"></i>Tweet
           <% end %>
+          <br> 
+
+ 
+   
+   
         <% end %> 
       </div> 
 
@@ -57,6 +62,9 @@
         <%# recaptcha_tags %> 
 
     </section>  
+
+    <section>Characters remaining: <div id="characters"> </div></section>
+
 
     <section>
       <b>What it is (you <text id="yellow">know </text>what <text id="yellow">it </text>is)</b><br>
@@ -66,6 +74,8 @@
       <b>How it works</b><br>
       Anyone with a Twitter account can submit a tweet to the voting center. Submitted tweets are then upvoted and downvoted until the timer completes. Every 15 minutes, the highest scoring tweet is published to <%= link_to "@internetfeels", "https://twitter.com/internetfeels" %>, accurately documenting how the internet feels at this frozen point in time. We predict cats.
       <br><br>
+
+      
 
       <b>Who done it</b><br>
       InternetFeels was developed by <%= link_to "@whatalexdo", "https://twitter.com/whatalexdo" %> and <%= link_to "@floofydoug", "https://twitter.com/floofydoug" %> to familiarize themselves with the Twitter API and carry out a simple but interesting Ruby on Rails project from start to finish. Hire us.

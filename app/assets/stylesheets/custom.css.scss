@@ -6,6 +6,8 @@ $grayMediumLight: #eaeaea;
 $white: #FFFFFF;
 $twitterBlue: #33CCFF;
 $yellow: #FDD017;
+$red: #B40404; 
+$green: #04B404; 
 
 @mixin box_sizing {
   -moz-box-sizing: border-box; 
@@ -19,6 +21,21 @@ $yellow: #FDD017;
   color: $yellow;
 }
 
+#white{
+  color: $white; 
+}
+
+#blue{
+  color: $twitterBlue; 
+}
+
+#red{
+  color: $red; 
+}
+
+#green{
+  color: $green; 
+}
 a:link {
   color: $twitterBlue;
 }

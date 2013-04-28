@@ -138,6 +138,7 @@ GEM
     pg (0.12.2)
     pg (0.12.2-x86-mingw32)
     polyglot (0.3.3)
+    populator (1.0.0)
     pry (0.9.12.1)
       coderay (~> 1.0.5)
       method_source (~> 0.8)
@@ -256,6 +257,7 @@ DEPENDENCIES
   jquery-rails (= 2.0.2)
   omniauth-twitter!
   pg (= 0.12.2)
+  populator
   rails (= 3.2.12)
   rake (~> 10.0.4)
   recaptcha

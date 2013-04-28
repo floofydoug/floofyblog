@@ -8,6 +8,7 @@ gem 'will_paginate', '3.0.4'
 gem 'bootstrap-will_paginate', '0.0.6'
 gem 'jquery-rails', '2.0.2'
 gem 'simple_form'
+gem 'populator'
 
 # Added 4-23-13
 gem "recaptcha", :require => "recaptcha/rails"
