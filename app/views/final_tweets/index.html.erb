@@ -1,7 +1,7 @@
 <% provide(:title, 'Published tweets') %>
 <h1><%= link_to "@internetfeels", "https://twitter.com/internetfeels" %> published tweets</h1>
 <div class="row">
-  <div class="span12" style="float: none; margin-left: auto; margin-right: auto;"> 
+  <div class="span9" style="float: none; margin-left: auto; margin-right: auto;"> 
     <!-- List published tweets -->
     <div class="row">
     <section>        
@@ -9,10 +9,10 @@
       <% if @final_tweets %>
         <%# @final_tweets.sort{|a,b| b.score <=> a.score}.each do |f| %> <!-- sorting logic moved to will_paginate -->
            <% @final_tweets.each do |f| %> 
-           <div class="span3" style="text-align: right; ">
+           <div class="span2" style="text-align: right; ">
             <text id="green"> <%= f.score %> </text> 
             </div> 
-            <div class="span9"> 
+            <div class="span7"> 
             <blockquote> <%= f.text %> <small><%=f.created_at%></small></blockquote>
             </div> 
         <% end %>
