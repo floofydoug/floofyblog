@@ -24,7 +24,7 @@ class Scraper
 
   def success(job)
     # Schedule the next scraping.
-    Delayed::Job.enqueue(Scraper.new, :run_at => 15.minutes.from_now)
+    Delayed::Job.enqueue(Scraper.new, :run_at =>5.minutes.from_now)
   end
 end
 

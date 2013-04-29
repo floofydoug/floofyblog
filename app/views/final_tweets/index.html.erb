@@ -5,16 +5,19 @@
     <!-- List published tweets -->
     <div class="row">
     <section>        
+      <div class="pagerize"> <%= will_paginate @final_tweets %> </div> 
       <% if @final_tweets %>
-        <% @final_tweets.sort{|a,b| b.score <=> a.score}.each do |f| %>
+        <%# @final_tweets.sort{|a,b| b.score <=> a.score}.each do |f| %> <!-- sorting logic moved to will_paginate -->
+           <% @final_tweets.each do |f| %> 
            <div class="span3" style="text-align: right; ">
             <text id="green"> <%= f.score %> </text> 
             </div> 
             <div class="span9"> 
-             <%= f.text %><br>
+            <blockquote> <%= f.text %> <small><%=f.created_at%></small></blockquote>
             </div> 
         <% end %>
       <% end %>
+      <div class="pagerize"> <%= will_paginate @final_tweets %> </div> 
     </section>
   </div>
 </div>
