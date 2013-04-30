@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130429233017) do
+ActiveRecord::Schema.define(:version => 20130430031544) do
 
   create_table "final_tweets", :force => true do |t|
     t.string   "text",       :limit => 140
@@ -54,6 +54,11 @@ ActiveRecord::Schema.define(:version => 20130429233017) do
   add_index "relationships", ["followed_id"], :name => "index_relationships_on_followed_id"
   add_index "relationships", ["follower_id", "followed_id"], :name => "index_relationships_on_follower_id_and_followed_id", :unique => true
   add_index "relationships", ["follower_id"], :name => "index_relationships_on_follower_id"
+
+  create_table "timers", :force => true do |t|
+    t.datetime "start"
+    t.datetime "end"
+  end
 
   create_table "tweets", :force => true do |t|
     t.string   "text",       :limit => 140

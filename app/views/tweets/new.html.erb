@@ -67,7 +67,7 @@
       <br><br>
 
       <b>How it works</b><br>
-      Anyone with a Twitter account can submit a tweet to the voting center. Submitted tweets are then upvoted and downvoted until the timer completes. Every 15 minutes, the highest scoring tweet is published to <%= link_to "@internetfeels", "https://twitter.com/internetfeels" %>, documenting how the internet feels at this frozen point in time. We predict cats.
+      Anyone with a Twitter account can submit a tweet to the voting center. Submitted tweets are then upvoted and downvoted until the timer completes. Every 10 minutes, the highest scoring tweet is published to <%= link_to "@internetfeels", "https://twitter.com/internetfeels" %>, documenting how the internet feels at this frozen point in time. We predict cats.
       <br><br>
 
       
@@ -85,6 +85,16 @@
     <section>
       <h1>Voting center</h1>
     </section>
+
+    <!-- Display times -->
+    <% timer = Timer.first %>
+    <% if timer %>
+      <section>
+        Cycle started at <%= timer.start.strftime('%H:%M') %> UTC<br>
+        Cycle ends at <%= timer.end.strftime('%H:%M') %> UTC
+      </section>
+    <% end %>
+    
 
     <!-- List submitted tweets -->
     <section>       
