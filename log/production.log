@@ -202,3 +202,7 @@ Compiled static_pages.css  (1ms)  (pid 94185)
 Compiled tweets.css  (1ms)  (pid 94185)
 Compiled users.css  (1ms)  (pid 94185)
 Compiled application.css  (2318ms)  (pid 94185)
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
