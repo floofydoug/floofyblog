@@ -40,34 +40,29 @@
 
     <!-- Submit a tweet form -->
     <section>
-      <% @tweet = Tweet.new  %>
-      <%= form_for(@tweet) do |f| %>
-        <%= render 'shared/error_messages', object: @tweet %>
-        <div class="input-append"> 
-        <%= f.text_field :text, :id=>"doug", :style => "width: 280px;"%>
-        
-          <!-- Submit button -->
-          <%= button_tag(type: 'submit', :style => "width: 100px;", class: "btn btn-info") do %>
-            <i class="icon-twitter icon-white"></i>Tweet
-          <% end %>
-          <br> 
-
- 
-   
-   
+      <% if current_user %>
+        <% @tweet = Tweet.new  %>
+        <%= form_for(@tweet) do |f| %>
+          <%= render 'shared/error_messages', object: @tweet %>
+          <div class="input-append"> 
+          <%= f.text_field :text, :id=>"doug", :style => "width: 280px;"%>         
+            <!-- Submit button -->
+            <%= button_tag(type: 'submit', :style => "width: 100px;", class: "btn btn-info") do %>
+              <i class="icon-twitter icon-white"></i> Tweet
+            <% end %>
+          </div> 
         <% end %> 
-      </div> 
-
-        <!-- Recaptcha commented out because omniauth from twitter was added. -->
-        <%# recaptcha_tags %> 
-
+        <div id="characters" style="float: left;">140 </div>&nbsp;characters remaining
+      <% else %>
+        <%= link_to "Sign in with Twitter", "/auth/twitter" %> to submit a tweet.
+      <% end %>
+      
+    
     </section>  
 
-    <section>Characters remaining: <div id="characters">140</div></section>
-
-
     <section>
-      <b>What it is (you <text id="yellow">know </text>what <text id="yellow">it </text>is)</b><br>
+      <b>What it is</b><br>
+      <!-- (you <text id="yellow">know </text>what <text id="yellow">it </text>is)</b><br> -->
       This is the official, direct feed into how the internet feels, and more importantly, what it has to say.
       <br><br>
 
@@ -100,8 +95,8 @@
       <% tweets.each do |tweet| %>
 
         <!-- Links to upvote and downvote -->
-        <div style="padding-top:1px;"> <strong padding="5px;">[<%= tweet.score %>] </strong> <%= link_to raw("<i class=\"icon-thumbs-up icon-white\"></i>"), upvote_tweet_path(tweet), class: "btn btn-success"%>
-          <%= link_to raw("<i class=\"icon-thumbs-down icon-white\"></i>"), downvote_tweet_path(tweet), 
+        <div style="padding-top:1px;"> <strong padding="5px;">[<%= tweet.score %>] </strong> <%= link_to raw("<i id=\"white\" class=\"icon-thumbs-up icon-white\"></i>"), upvote_tweet_path(tweet), class: "btn btn-success"%>
+          <%= link_to raw("<i id=\"white\" class=\"icon-thumbs-down icon-white\"></i>"), downvote_tweet_path(tweet), 
           class: "btn btn-danger"%>  <%= tweet.text %> </div> <br>
       <% end %>
 

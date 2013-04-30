@@ -10,4 +10,6 @@ def self.create_from_omniauth(auth)
     user.name = auth["info"]["nickname"]
   end
 end
+
+acts_as_voter
 end

@@ -1,5 +1,6 @@
 class Scraper
   def perform
+
     # All the scraping code you need to run goes here
     @tweet = Tweet.find(:all, :order => "score desc").first
 
@@ -14,7 +15,7 @@ class Scraper
 
     # Remove all temporary tweets and IP addresses
     Tweet.delete_all
-    IP_address.delete_all
+    IPAddress.delete_all
   end
 
   def error(job, exception)

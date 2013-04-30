@@ -10,6 +10,9 @@ gem 'jquery-rails', '2.0.2'
 gem 'simple_form'
 gem 'populator'
 
+# Added 4-29-13
+gem 'acts_as_votable', '~> 0.5.0'
+
 # Added 4-23-13
 gem "recaptcha", :require => "recaptcha/rails"
 gem "delayed_job", "~> 3.0.5"
