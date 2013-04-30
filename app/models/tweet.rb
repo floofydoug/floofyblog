@@ -1,6 +1,5 @@
 class Tweet < ActiveRecord::Base
   attr_accessible :text
-  has_many :votes, :dependent => :destroy
 
   # Access IPAddress attributes
   attr_accessible :ip_address_attributes
