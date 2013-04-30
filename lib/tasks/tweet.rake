@@ -6,17 +6,19 @@ namespace :tweet do
     @tweet = Tweet.find(:all, :order => "score desc").first
 
     # Publish tweet
-    @final_tweet = FinalTweet.new
-    @final_tweet.text = @tweet.text
-    @final_tweet.score = @tweet.score
-    @final_tweet.save
+    if @tweet
+      @final_tweet = FinalTweet.new
+      @final_tweet.text = @tweet.text
+      @final_tweet.score = @tweet.score
+      @final_tweet.save
 
-    # Tweet from gem
-    Twitter.update(@final_tweet.text)
+      # Tweet from gem
+      Twitter.update(@final_tweet.text)
 
-    # Remove all temporary tweets and IP addresses
-    Tweet.delete_all
-    IPAddress.delete_all
+      # Remove all temporary tweets and IP addresses
+      Tweet.delete_all
+      IPAddress.delete_all
+    end
   end
 end
     
