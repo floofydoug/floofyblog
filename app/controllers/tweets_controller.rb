@@ -6,6 +6,7 @@ class TweetsController < ApplicationController
   def create
     if current_user
       @tweet = Tweet.new(params[:tweet])
+      @tweet.text = "@" + current_user.name + " " + @tweet.text
       @tweet.score = 0
 
       # Get current IP address
@@ -22,6 +23,8 @@ class TweetsController < ApplicationController
       # Else if IP exists but has not tweeted, submit tweet
       elsif @ip_address && !@ip_address.tweeted
         
+
+
         # Recaptcha implementation
         if @tweet.save
           @ip_address.tweeted = true
