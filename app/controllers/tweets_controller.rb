@@ -6,7 +6,7 @@ class TweetsController < ApplicationController
   def create
     if current_user
       @tweet = Tweet.new(params[:tweet])
-      @tweet.text = "@" + current_user.name + " " + @tweet.text
+      @tweet.text = "@" + current_user.name + ": " + @tweet.text
       @tweet.score = 0
 
       # Get current IP address
