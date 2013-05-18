@@ -7,12 +7,12 @@ namespace :tweet do
     if !timer
       timer = Timer.new
       timer.start = Time.now
-      # Add 10 minutes to end time
-      timer.end = timer.start + 10 * 60 
+      # Add 60 minutes to end time
+      timer.end = timer.start + 60 * 60 
       timer.save
     else
       timer.start = Time.now
-      timer.end = timer.start + 10 * 60 
+      timer.end = timer.start + 60 * 60 
       timer.save
     end
 
@@ -23,6 +23,7 @@ namespace :tweet do
     if @tweet
       @final_tweet = FinalTweet.new
       @final_tweet.text = @tweet.text
+      @final_tweet.username = @tweet.username
       @final_tweet.score = @tweet.score
       @final_tweet.save
 
@@ -32,6 +33,7 @@ namespace :tweet do
       # Remove all temporary tweets and IP addresses
       Tweet.delete_all
       IPAddress.delete_all
+      User.delete_all
     end
   end
 end

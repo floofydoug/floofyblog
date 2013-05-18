@@ -11,12 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130430031544) do
+ActiveRecord::Schema.define(:version => 20130518233321) do
 
   create_table "final_tweets", :force => true do |t|
     t.string   "text",       :limit => 140
     t.datetime "created_at"
     t.integer  "score"
+    t.string   "username"
   end
 
   create_table "ip_addresses", :force => true do |t|
@@ -64,6 +65,7 @@ ActiveRecord::Schema.define(:version => 20130430031544) do
     t.string   "text",       :limit => 140
     t.datetime "created_at"
     t.integer  "score"
+    t.string   "username"
   end
 
   create_table "users", :force => true do |t|
