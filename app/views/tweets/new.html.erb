@@ -103,7 +103,7 @@
 
       <% if tweets.empty? %>
         There are currently no submitted tweets to vote on.
-        <% if current_user %>
+        <% if !current_user %>
           <br>
           <%= link_to "Submit a tweet", "/auth/twitter" %> to change that!
         <% end %>
