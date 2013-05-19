@@ -102,8 +102,11 @@
       <% tweets = Tweet.paginate(:page => params[:page], :per_page=>10).order('score desc') %> 
 
       <% if tweets.empty? %>
-        There are currently no submitted tweets to vote on.<br>
-        <%= link_to "Submit a tweet", "/auth/twitter" %> to change that!
+        There are currently no submitted tweets to vote on.
+        <% if current_user %>
+          <br>
+          <%= link_to "Submit a tweet", "/auth/twitter" %> to change that!
+        <% end %>
       <% end %>
 
       <% tweets.each do |tweet| %>
