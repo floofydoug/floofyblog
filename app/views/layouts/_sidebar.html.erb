@@ -1,0 +1,22 @@
+   <div class="sidebar pure-u">
+       <p class="notice" style="color: #8E8ED6"><%= notice %></p>
+       <p class="alert" style="color: #8E8ED6"><%= alert %></p>
+        <header class="header pure-u-1">
+          <% if current_user %> 
+          <% end %> 
+            <hgroup>
+                <h1 class="brand-title">FloofyDoug.com</h1>
+                <h2 class="brand-tagline">Web Consulting and Design</h2>
+            </hgroup>
+
+            <nav class="nav">
+                <ul class="nav-list">
+ <% if current_user %>
+            <li><%= link_to "Sign out @#{current_user.name}", signout_path, :class=> 'pure-button' %></li>
+          <% else %>
+            <li><%= link_to "Sign in with Twitter", "/auth/twitter" %></li>
+          <% end %>
+                </ul>
+            </nav>
+        </header>
+    </div>
