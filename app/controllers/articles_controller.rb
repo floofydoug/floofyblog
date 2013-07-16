@@ -1,14 +1,14 @@
 class ArticlesController < ApplicationController
+  
   # GET /articles
   # GET /articles.xml
-  def index
+def index
+  if params[:tag]
+    @articles = Article.tagged_with(params[:tag])
+  else
     @articles = Article.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @articles }
-    end
   end
+end
 
   # GET /articles/1
   # GET /articles/1.xml

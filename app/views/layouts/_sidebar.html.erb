@@ -1,22 +1,66 @@
    <div class="sidebar pure-u">
        <p class="notice" style="color: #8E8ED6"><%= notice %></p>
        <p class="alert" style="color: #8E8ED6"><%= alert %></p>
+         <span style="text-align: center;">
+         <% if current_user %>
+          <p> Welcome, <%= current_user.name%>! Not you? 
+
+            <%= link_to "Sign-Out", signout_path, :class=> 'pure-button pure-button-error' %></p> 
+
+          <% else %>
+            <p> You are not signed in. <%= link_to "Sign in with Twitter", "/auth/twitter", :class=> 'pure-button pure-button-success'%> </p> 
+          <% end %>
+        </span> 
+
         <header class="header pure-u-1">
           <% if current_user %> 
           <% end %> 
-            <hgroup>
+  <!--           <hgroup>
                 <h1 class="brand-title">FloofyDoug.com</h1>
                 <h2 class="brand-tagline">Web Consulting and Design</h2>
-            </hgroup>
+            </hgroup> -->
 
-            <nav class="nav">
+<div class="pure-u">
+    <div class="pure-menu pure-menu-open">
+
+        <ul>
+          
+            <li class="doug">
+                <%= link_to "Home", root_path %> 
+            </li>
+          
+            <li class="doug">
+                <%= link_to "Blog", articles_path %> 
+            </li>
+          
+            <li class="doug">
+                <a href="/forms/">Rates and Agreements</a>
+            </li>
+          
+            <li class="doug">
+                <a href="/buttons/">Contact</a>
+            </li>
+          
+            <li class="doug">
+                <a href="/tables/">Tables</a>
+            </li>
+          
+            <li class="doug">
+                <a href="/menus/">Menus</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+<!--             <nav class="nav">
                 <ul class="nav-list">
- <% if current_user %>
-            <li><%= link_to "Sign out @#{current_user.name}", signout_path, :class=> 'pure-button' %></li>
-          <% else %>
-            <li><%= link_to "Sign in with Twitter", "/auth/twitter" %></li>
-          <% end %>
-                </ul>
+                  <br> 
+                  <br> 
+
+
+              <li>     <%= link_to "Blog", articles_path, :class => 'pure-button pure-button-primary'%> </li> 
+                </ul> -->
             </nav>
         </header>
     </div>

@@ -3,6 +3,7 @@ SampleApp::Application.routes.draw do
   resources :articles do
     resources :comments
   end
+  get 'tags/:tag', to: 'articles#index', as: :tag
 
 
   resources :users do
@@ -27,6 +28,7 @@ SampleApp::Application.routes.draw do
   match '/help',    to: 'static_pages#help'
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
+  match '/blog' , to: 'articles#index'
 
   # Added 4-26-2013
   resources :final_tweets do

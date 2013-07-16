@@ -2,31 +2,40 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Blog Layout Example &ndash; Pure</title>
+  <title>FloofyDoug&ndash;</title>
   
- <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.2.0/pure-min.css">
-   <%= stylesheet_link_tag 'application' %>
-<script>
-    try { Typekit.load(); } catch (e) {}
-</script>
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.2.0/pure-min.css">
+  <%= stylesheet_link_tag 'application' %>
+  <script>
+  try { Typekit.load(); } catch (e) {}
+  </script>
 
 
 </head>
 <body>
   <header> 
- <%= render 'layouts/messages' %>
-       </header>
-      <div id="main" role="main">
-        <%= yield %>
-      </div>
-      <footer class="footer"> 
-    <%= render 'layouts/footer' %> 
-  </footer>
-    </div> <!--! end of #container -->
-  </body>
+   <%= render 'layouts/messages' %>
+ </header>
+ <div id="main" role="main">
+
+  
+  <div class="pure-g-r" id="layout">
+    <div class="pure-u-1">
+      <%= yield %>
+    </div> 
+    <%= render 'layouts/sidebar' %> 
+  </div> 
+  
+ 
+</div>
+<footer class="footer"> 
+  <%= render 'layouts/footer' %> 
+</footer>
+</div> <!--! end of #container -->
+</body>
 </html>
 
 
