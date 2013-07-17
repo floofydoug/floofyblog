@@ -9,6 +9,7 @@ gem 'simple_form'
 gem 'populator'
 gem 'cancan'
 gem 'acts-as-taggable-on'
+gem 'devise'
 
 # Added 4-29-13
 gem 'acts_as_votable', '~> 0.5.0'

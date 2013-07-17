@@ -1,13 +1,21 @@
+<div class="posts pure-g">
+	<h1 class="content-subhead pure-u-1">Recent Posts</h1>
 
-<h1>Articles</h1>
+	<!-- A single blog post -->
+	<section class="post pure-u-1">
 
-<div id="articles">
-  <% @articles.each do |article| %>
-    <h2><%= link_to article.title, article %></h2>
-    <%= simple_format article.body %>
-    <p>Tags: <%= article.tag_list %></p>
-    <p><%= link_to "Edit Article", edit_article_path(article) %></p>
-  <% end %>
-</div>
+		<div id="articles">
+			<% @articles.each do |article| %>
+			<h2 class="post-title pure-u-1"><%= link_to article.title, article %></h2>
+			<p class="post-meta pure-u-1"> By <a href="#" class="post-author"> FloofyDoug </a>  under <a class="post-category post-category-design" href="#"> tagsgohere </a> <a class="post-category post-category-pure" href="#"> Anothertag</a> 
+				<div class="post-description pure-u-1"> <p> <%=article.body %> </p></div> 
+				<p>Tags: <%= article.tag_list %></p>
+				<p><%= link_to "Edit Article", edit_article_path(article) %></p>
+				<% end %>
+			</div>
+		</section>
+	</div>
 
-<p><%= link_to "New Article", new_article_path %></p>
+
+
+	<p><%= link_to "New Article", new_article_path %></p>

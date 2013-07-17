@@ -26,6 +26,7 @@ end
   def new
     @article = Article.new
 
+
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @article }
@@ -41,6 +42,7 @@ end
   # POST /articles.xml
   def create
     @article = Article.new(params[:article])
+    @author = current_user.name
 
     respond_to do |format|
       if @article.save
